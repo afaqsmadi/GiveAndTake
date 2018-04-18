@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var db = require('./db');
 var userRouter = require('./resources/User/userRouter');
 var profileRouter = require('./resources/UserProfile/profileRouter');
+var ItemRouter = require('./resources/Items/ItemRouter');
 var session = require('express-session');
 var bcrypt = require('bcrypt-nodejs');
 var app = express();
@@ -18,6 +19,7 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.use('/',userRouter);
 app.use('/user',profileRouter);
+app.use('/item', ItemRouter);
 
 app.get('/', function (req, res) {
 });
