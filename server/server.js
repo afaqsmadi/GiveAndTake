@@ -3,13 +3,20 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var db = require('./db');
 var userRouter = require('./resources/user/userRouter');
+var session = require('express-session');
+var bcrypt = require('bcrypt-nodejs');
 
 var app = express();
+app.use(session({
+  secret: 'OurAppSessionSecrets',
+  resave: false,
+  saveUninitialized: true,
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(__dirname + '/../react-client/dist'));
 
-app.use('/user',userRouter);
+app.use('/',userRouter);
 
 app.get('/', function (req, res) {
 });
