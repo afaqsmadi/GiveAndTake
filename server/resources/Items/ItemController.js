@@ -10,6 +10,7 @@ exports.createItem = function (req, res) {
 		available: req.body.available,
 		location: req.body.location
 	})	
+	// 
 	item.save(function(err){
 		if(err){
 			return handleError(err)
@@ -20,16 +21,19 @@ exports.createItem = function (req, res) {
 };
 
 exports.updateItem = function (req, res) {
-Items.find()
-var upitem={
+// Items.find({_id:req.body._id})
+// console.log(req.body)
+var updateitem={
 		name: req.body.name,
 		image: req.body.image,
 		description: req.body.description,
 		available: req.body.available,
 		location: req.body.location,
-		dateOfCreation: { type: Date, default: Date.now }
+		dateOfCreation: Date.now()
 	}
-Items.update({_id:req.body.id},upitem,function(err,data){
+	// console.log(updateitem)
+	console.log(req.body)
+Items.update({_id:req.body._id},updateitem,function(err,data){
 if(err){
 	res.send(err)
 }
@@ -39,12 +43,22 @@ res.send(data);
 };
 
 exports.deleteItem = function (req, res) {
+	Items.findOne({_id:req.body._id},function(err,data){
+		if(err){
+			res.send(err)
+		}
+		data.remove();
+		res.send("deleted")
 
+	})
 };
 
 exports.searchItem = function (req,res){
 Items.find({name:req.body.name},function(err,data){
-if(err)return handleError(err)	
+if(err){
+	return handleError(err)
+}
+res.send(data)
 })
 
 
