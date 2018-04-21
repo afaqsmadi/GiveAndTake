@@ -28,5 +28,22 @@ exports.deletePost=function(req,res){
     });
 
 }
+exports.updatePost=function(req,res){
+	var postupdate= new Posts({
+		username: req.body.username,
+		commitId: req.body.commitId,
+		contentText: req.body.contentText,
+		dateOfCreation: req.body.dateOfCreation
+	})
+Posts.update({_id:req.body._id},postupdate,function(err,data){
+if(err){
+	res.send(err)
+}
+res.send(data);
+})	
+
+};
+	 
+
 
 
