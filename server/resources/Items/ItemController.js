@@ -3,6 +3,7 @@ var Items = require('./Items');
 // Complete each of the following controller methods
 
 exports.createItem = function (req, res) {
+	console.log("req,body",req.body);
 	var item= new Items({
 		name: req.body.name,
 		image: req.body.image,
@@ -10,7 +11,7 @@ exports.createItem = function (req, res) {
 		available: req.body.available,
 		location: req.body.location
 	})	
-	// 
+	
 	item.save(function(err){
 		if(err){
 			return handleError(err)
@@ -38,7 +39,7 @@ if(err){
 	res.send(err)
 }
 res.send(data);
-})	;
+});
 
 };
 
@@ -60,6 +61,15 @@ if(err){
 }
 res.send(data)
 })
-
-
 };
+
+
+exports.retrieve= function(req, res){
+	Items.find(function(err, data){
+		if(err){
+			return handleError(err)
+		}
+		res.send(data)
+		console.log(data)
+	})
+}

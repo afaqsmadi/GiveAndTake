@@ -4,7 +4,8 @@ var ItemController = require('./ItemController');
 // Create route handlers for each of the six methods in pokemonController
 ItemRouter.route('/')
 	.get(function (req, res) {
-		ItemController.searchItem(req,res);
+		// ItemController.searchItem(req,res);
+		  ItemController.retrieve(req,res);
 		//res.json("get request");
 
 		//ItemController.searchItem(req , res); // login
