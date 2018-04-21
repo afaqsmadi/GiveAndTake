@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var db = require('./db');
 var userRouter = require('./resources/User/userRouter');
 var profileRouter = require('./resources/UserProfile/profileRouter');
+var commentsRouter = require('./resources/Comments/CommentsRouter');
 var ItemRouter = require('./resources/Items/ItemRouter');
 var PostRouter=require('./resources/Posts/PostRouter')
 var session = require('express-session');
@@ -22,6 +23,7 @@ app.use('/',userRouter);
 app.use('/user',profileRouter);
 app.use('/item', ItemRouter);
 app.use('/post',PostRouter)
+app.use('/comments', commentsRouter);
 
 app.get('/', function (req, res) {
 });
