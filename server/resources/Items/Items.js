@@ -10,7 +10,9 @@ var ItemsSchema = mongoose.Schema({
 	dateOfCreation: { type: Date, default: Date.now }
 });
 
-// Register the pokemonSchema with Mongoose as the 'Pokemon' collection.
 var Items = mongoose.model('Items', ItemsSchema);
 
 module.exports = Items;
+ // if(this.children.length===1){
+ //      counter=counter+1
+ //    }
