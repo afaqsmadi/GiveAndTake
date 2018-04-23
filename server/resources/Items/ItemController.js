@@ -73,3 +73,13 @@ exports.retrieve= function(req, res){
 		console.log(data)
 	})
 }
+
+exports.limitedItem = function(req, res) {
+	Items.
+	  find({}).
+	  limit(5).
+	  sort('-dateOfCreation').
+	  exec(function (err, data) {
+	  	res.json(data);
+	  });
+}

@@ -9,7 +9,8 @@ exports.retrive = function (req, res) {
 		}
 		if (!user) {
 			res.json('No such username, please check username')
+		} else {
+			res.json(user)
 		}
-		res.json(user)
 	});
 };
