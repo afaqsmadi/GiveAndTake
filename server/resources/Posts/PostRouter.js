@@ -10,10 +10,7 @@ PostRouter.route('/')
 .delete( function (req, res) {
         PostController.deletePost(req, res);
 })
-
  .put(function (req, res) {
 		PostController.updatePost(req, res);
-	}
-
+	})
 module.exports = PostRouter;
-

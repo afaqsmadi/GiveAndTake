@@ -29,8 +29,7 @@ exports.login = function (req, res) {
         			return console.error(err);
         		}
         		req.session.username = user.username;
-        		console.log(req.session.username)
-        		res.redirect('/test')
+        		res.json(user);
 			})
 			res.json(user)
 	    });
@@ -44,4 +43,10 @@ exports.logout = function (req, res) {
 		}
 		res.json("logged out")
 	})
+};
+
+exports.findUser = function (req, res) {
+	Users.findOne({username : req.session.username}).exec(function (err, user) {
+		res.json(user)
+	});
 };

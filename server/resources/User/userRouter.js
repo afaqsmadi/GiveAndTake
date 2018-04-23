@@ -28,5 +28,19 @@ userRouter.route('/logout')
 		userController.logout(req, res); 
 	})
 
+userRouter.route('/loginAuth')
+	.get(function (req, res) {
+		if (req.session.username) {
+			userController.findUser(req, res);
+		} else {
+			res.json('{firstName: guest, lastName: 1}');
+		}
+	})
+
+userRouter.route('/test')
+	.get(function (req, res) {
+		console.log(req.session)
+		userController.findUser(req, res);
+	})
 
 module.exports = userRouter;
