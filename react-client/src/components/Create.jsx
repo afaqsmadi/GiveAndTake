@@ -18,31 +18,31 @@ class Create extends React.Component {
             <form action="/create" method="post" style={{"width": '100%'}}>
               <div className="input-group margin-bottom-20">
                 <span className="input-group-addon"><i className="glyphicon glyphicon-user mycolor"></i></span>
-                <input size="60" maxLength="255" className="form-control" placeholder="User Name" name="username" id="UserRegistration_username" type="text" />
+                <input size="60" className="form-control" placeholder="User Name" name="username" id="UserRegistration_username" type="text" />
               </div>
               <div className="input-group margin-bottom-20">
                   <span className="input-group-addon"><i className="glyphicon glyphicon-lock mycolor"></i></span>
-                  <input size="60" maxLength="255" className="form-control" placeholder="Password" name="password" id="UserRegistration_password" type="password" />                                    
+                  <input size="60" className="form-control" placeholder="Password" name="password" id="UserRegistration_password" type="password" />                                    
               </div>
               <div className="input-group margin-bottom-20">
                   <span className="input-group-addon"><i className="glyphicon glyphicon-user mycolor"></i></span>
-                  <input size="60" maxLength="255" className="form-control" placeholder="First Name" name="firstName" id="UserRegistration_fname" type="text"/>                                    
+                  <input size="60" className="form-control" placeholder="First Name" name="firstName" id="UserRegistration_fname" type="text"/>                                    
               </div>
               <div className="input-group margin-bottom-20">
                   <span className="input-group-addon"><i className="glyphicon glyphicon-user mycolor"></i></span>
-                  <input size="60" maxLength="255" className="form-control" placeholder="Last Name" name="lastName" id="UserRegistration_lname" type="text"/>                                    
+                  <input size="60" className="form-control" placeholder="Last Name" name="lastName" id="UserRegistration_lname" type="text"/>                                    
               </div>
               <div className="input-group margin-bottom-20">
                   <span className="input-group-addon"><i className="glyphicon glyphicon-envelope mycolor"></i></span>
-                  <input size="60" maxLength="255" className="form-control" placeholder="Email" name="email" id="UserRegistration_address" type="text"/>                                    
+                  <input size="60" className="form-control" placeholder="Email" name="email" id="UserRegistration_address" type="text"/>                                    
               </div>
               <div className="input-group margin-bottom-20">
                   <span className="input-group-addon"><i className="glyphicon glyphicon-picture mycolor"></i></span>
-                  <input size="60" maxLength="255" className="form-control" placeholder="image" name="imgUrl" id="UserRegistration_Image" type="text"/>                                    
+                  <input className="form-control" placeholder="image" name="imgUrl" id="UserRegistration_Image" type="text"/>                                    
               </div>
               <div className="input-group margin-bottom-20">
                   <span className="input-group-addon"><i className="glyphicon glyphicon-question-sign mycolor"></i></span>
-                  <input size="60" maxLength="255" className="form-control" placeholder="About" name="about" id="UserRegistration_contactnumber" type="text"/>                                    
+                  <input size="60" className="form-control" placeholder="About" name="about" id="UserRegistration_contactnumber" type="text"/>                                    
               </div>
               <div className="row">
                   <div className="col-md-12">

@@ -8,11 +8,8 @@ var ItemsSchema = mongoose.Schema({
 	available: Boolean, // represent the number of days.
 	location: String,
 	dateOfCreation: { type: Date, default: Date.now }
-});
+},{  usePushEach: true});
 
 var Items = mongoose.model('Items', ItemsSchema);
 
 module.exports = Items;
- // if(this.children.length===1){
- //      counter=counter+1
- //    }

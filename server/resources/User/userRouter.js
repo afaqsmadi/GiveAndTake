@@ -1,7 +1,6 @@
 var userRouter = require('express').Router();
 var userController = require('./UserController');
 
-// Create route handlers for each of the six methods in pokemonController
 userRouter.route('/')
 	.get(function (req, res) {
 		res.json("Not Allowed To Enter Here");
@@ -39,8 +38,12 @@ userRouter.route('/loginAuth')
 
 userRouter.route('/test')
 	.get(function (req, res) {
-		console.log(req.session)
-		userController.findUser(req, res);
+		userController.addItem(req, res);
+	})
+
+userRouter.route('/test2')
+	.get(function (req, res) {
+		userController.test(req, res);
 	})
 
 module.exports = userRouter;

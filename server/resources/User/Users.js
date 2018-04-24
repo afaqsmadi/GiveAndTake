@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var db = require('../../db');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
@@ -10,8 +9,10 @@ var UsersSchema = mongoose.Schema({
 	lastName : {type: String , required : true},
 	about: {type: String },
 	email : {type: String, index: {unique: true} , required : true},
-	imgUrl : {type: String }
-});
+	imgUrl : {type: String },
+	items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Items'}]
+},
+{  usePushEach: true});
 
 var defualtImg = "https://www.sarahotels.in/img/default-user.png"
 
@@ -39,7 +40,6 @@ UsersSchema.methods.validatePassword = function(password, callback) {
     });
 };
 
-// Register the pokemonSchema with Mongoose as the 'Pokemon' collection.
 var Users = mongoose.model('Users', UsersSchema);
 
 module.exports = Users;

@@ -1,7 +1,6 @@
 var ItemRouter = require('express').Router();
 var ItemController = require('./ItemController');
 
-// Create route handlers for each of the six methods in pokemonController
 ItemRouter.route('/')
 	.get(function (req, res) {
 		// ItemController.searchItem(req,res);
@@ -22,6 +21,9 @@ ItemRouter.route('/')
 		// console.log("asdasdas")
 		ItemController.deleteItem(req, res); // deleteItem
 	})
-
+ItemRouter.route('/:id')
+	.get(function (req, res) {
+		ItemController.getItemByID(req, res);
+	})
 
 module.exports = ItemRouter;
