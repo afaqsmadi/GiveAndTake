@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 import {ListGroupItem} from 'react-bootstrap';
 import {PanelGroup} from 'react-bootstrap';
-class Showitem extends React.Component {
+class ShowItem extends React.Component {
   constructor(props) {
     super(props);
     this.state={
@@ -136,7 +136,7 @@ class Showitem extends React.Component {
   }
 
 }
-export default Showitem;
+export default ShowItem;
 
 
 // <div className='row' style={rstyle}>

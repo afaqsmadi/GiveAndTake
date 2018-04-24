@@ -5,6 +5,7 @@ import LoginD from './components/LoginD.jsx';
 import Home from './components/Home.jsx';
 import Create from './components/Create.jsx';
 import Profile from './components/Profile.jsx';
+import ShowItem from './components/ItemsShow.jsx';
 import {Nav, Navbar, NavItem, MenuItem, NavDropdown} from 'react-bootstrap';
 import {
   BrowserRouter as Router,
@@ -73,29 +74,25 @@ class App extends React.Component {
                 Home
               </NavItem>
               <NavItem eventKey={2} >
-                <Link to="/profile">Profile</Link>
+                <Link to="/AllItems">All items</Link>
               </NavItem>
-              <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                <MenuItem eventKey={3.1}>Action</MenuItem>
-                <MenuItem eventKey={3.2}>Another action</MenuItem>
-                <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                <MenuItem divider />
-                <MenuItem eventKey={3.3}>Separated link</MenuItem>
-              </NavDropdown>
+              
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={1} >
-                <Link to="/login">Login</Link>
-              </NavItem>
-              <NavItem eventKey={2} href="#">
-                <Link to="/create">Create Account</Link>
-              </NavItem>
+              <NavDropdown eventKey={3} title="User Menu" id="dropdown">
+                <MenuItem eventKey={3.1}><Link to="/login">Login</Link></MenuItem>
+                <MenuItem eventKey={3.2}><Link to="/profile">Profile</Link></MenuItem>
+                <MenuItem eventKey={3.3}><Link to="/create">Create Account</Link></MenuItem>
+                <MenuItem divider />
+                <MenuItem eventKey={3.3} href="/logout">Logout</MenuItem>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
         <Route exact path="/" render={()=><Home user={this.state.user}/>}/>
         <Route path="/login" render={()=><LoginD loginAuthen={this.loginAuthen}/>}/>
         <Route path="/create" render={()=><Create />}/>
+        <Route path="/AllItems" render={()=><ShowItem />}/>
         <Route path="/profile" render={()=><Profile username={this.state.user.username}/>}/>
       </div>
 
@@ -103,5 +100,4 @@ class App extends React.Component {
     )
   }
 }
-//<Route exact path="/" component={Home}/>
 ReactDOM.render(<App />, document.getElementById('app'));
