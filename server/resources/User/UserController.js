@@ -1,6 +1,5 @@
 var Users = require('./Users');
-// var session = require('express-session');
-// Complete each of the following controller methods
+var Items = require('../Items/Items');
 
 exports.create = function (req, res) {
 	var user = new Users(req.body);
@@ -50,3 +49,40 @@ exports.findUser = function (req, res) {
 		res.json(user)
 	});
 };
+
+exports.addItem = function (req, res) {
+	var item = new Items({
+		name: req.body.name,
+		image: req.body.image,
+		description: req.body.description,
+		available: true,
+		location: req.body.location
+	})	
+	item.save(function(err){
+		if(err){
+			return handleError(err)
+		}
+	})
+	Users.findOne({username : req.session.username}).exec(function (err, user) {
+		user.items.push(item._id);
+		user.save(function (err, updatedUser) {
+		    if (err) return console.log(err);
+		    res.json(updatedUser);
+		});
+	});
+}
+
+exports.test = function (req, res) {
+	Users.findOne({username : req.session.username}).exec(function (err, user) {
+		var id = user.items
+		arr = [];
+		for (var i = 0 ; i < id.length ; i++) {
+			Items.findById(id[i]).exec(function (err, item) {
+				console.log(item)
+				arr.push(item)
+			})
+		}
+		console.log(arr)
+		res.json(arr)
+	});
+}

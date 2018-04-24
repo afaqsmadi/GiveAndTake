@@ -1,7 +1,5 @@
 var Items = require('./Items');
 
-// Complete each of the following controller methods
-
 exports.createItem = function (req, res) {
 	console.log("req,body",req.body);
 	var item= new Items({
@@ -82,4 +80,17 @@ exports.limitedItem = function(req, res) {
 	  exec(function (err, data) {
 	  	res.json(data);
 	  });
+}
+
+exports.getItemByID = function(req, res) {
+	Items.findById(req.params.id).exec(function (err, item) {
+		if (err) {
+			res.json(err);
+		} 
+		if (!item) {
+			res.json("no item");
+		} else {
+			res.json(item)			
+		}
+	})
 }
