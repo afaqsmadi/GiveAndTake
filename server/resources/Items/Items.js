@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var db = require('../../db');
 
 var ItemsSchema = mongoose.Schema({
+	username:String,
 	name: String,
 	image: String,
 	description: String,

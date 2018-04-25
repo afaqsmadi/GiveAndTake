@@ -3,6 +3,7 @@ var Items = require('./Items');
 exports.createItem = function (req, res) {
 	console.log("req,body",req.body);
 	var item= new Items({
+		username:req.session.username,
 		name: req.body.name,
 		image: req.body.image,
 		description: req.body.description,
