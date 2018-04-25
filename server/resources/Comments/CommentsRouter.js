@@ -1,7 +1,6 @@
 var commentRouter = require('express').Router();
 var commentController = require('./CommentsController');
 
-// Create route handlers for each of the six methods in pokemonController
 commentRouter.route('/')
 	.get(function (req, res) {
 	
