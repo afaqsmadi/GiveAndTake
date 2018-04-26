@@ -36,7 +36,6 @@ class ItemDisplay extends React.Component {
     }
   }
 
-
   render(){
   	return(
       <div style={{"marginTop": "25px"}}>
