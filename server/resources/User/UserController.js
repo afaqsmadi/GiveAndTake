@@ -52,6 +52,7 @@ exports.findUser = function (req, res) {
 
 exports.addItem = function (req, res) {
 	var item = new Items({
+		username:req.session.username,
 		name: req.body.name,
 		image: req.body.image,
 		description: req.body.description,

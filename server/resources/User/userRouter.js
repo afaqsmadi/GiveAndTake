@@ -36,7 +36,7 @@ userRouter.route('/loginAuth')
 		}
 	})
 
-userRouter.route('/test')
+userRouter.route('/addItem')
 	.get(function (req, res) {
 		userController.addItem(req, res);
 	})

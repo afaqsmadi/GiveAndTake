@@ -1,9 +1,11 @@
 var Comments = require('./Comments');
 
 exports.createComment=function(req,res){
+	console.log("req,session",req.session.username);
+	var x=req.session.username;
 	var comment=new Comments({
-		idPost: req.body.idPost,
-		idUser: req.body.idUser,
+		idPost:req.body.idPost,
+		username:req.session.username,
 		text: req.body.text
 	})
 
@@ -11,7 +13,8 @@ exports.createComment=function(req,res){
 		if(err){
 			res.send(err)
 		}
-		res.json(comment)
+	res.json(comment)
+
 	})
 
 }
@@ -34,5 +37,16 @@ exports.deleteComment= function(req, res){
 		}
 		data.remove()
 		res.send('deleted')
+	})
+}
+
+
+exports.retrieve= function(req, res){
+	Comments.find(function(err, data){
+		if(err){
+			return handleError(err)
+		}
+		res.send(data)
+		console.log(data)
 	})
 }

@@ -1,4 +1,7 @@
 import React from 'react';
+import ShowComments from './showcomments.jsx';
+import AddItems from './AddItems.jsx';
+import Comments from './comments.jsx';
 
 class Home extends React.Component {
   constructor(props) {
@@ -7,7 +10,7 @@ class Home extends React.Component {
       arr:[]
     }
   }
-
+  
   componentDidMount(){
     var that = this;
     var arr = this.state.arr
