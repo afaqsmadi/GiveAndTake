@@ -6,6 +6,7 @@ import Home from './components/Home.jsx';
 import Create from './components/Create.jsx';
 import Profile from './components/Profile.jsx';
 import ShowItem from './components/ItemsShow.jsx';
+import AddItems from './components/AddItems.jsx';
 import {Nav, Navbar, NavItem, MenuItem, NavDropdown, browserHistory} from 'react-bootstrap';
 import {
   BrowserRouter as Router,
@@ -76,6 +77,9 @@ class App extends React.Component {
               <NavItem eventKey={2} >
                 <Link to="/AllItems">All items</Link>
               </NavItem>
+              <NavItem eventKey={2} >
+                <Link to="/AddItem">Add item</Link>
+              </NavItem>
               
             </Nav>
             <Nav pullRight>
@@ -92,6 +96,7 @@ class App extends React.Component {
         <Route exact path="/" render={()=><Home user={this.state.user}/>}/>
         <Route path="/login" render={()=><LoginD loginAuthen={this.loginAuthen}/>}/>
         <Route path="/create" render={()=><Create />}/>
+        <Route path="/addItem" render={()=><AddItems />}/>
         <Route path="/AllItems" render={()=><ShowItem />}/>
         <Route path="/profile" render={()=><Profile username={this.state.user.username}/>}/>
       </div>

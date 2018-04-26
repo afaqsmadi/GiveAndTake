@@ -3,13 +3,11 @@ import { Panel } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';  
 import { ListGroupItem } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';   
-require('express-session');
+
 class AddItems extends React.Component{
 	constructor(props){
 		super(props);
-		console.log('kkkkkkkkkk ',props.r.user.username)
 
-		console.log('asdas',props);
 		this.state={
 			name:'',
 			location:'',
@@ -26,18 +24,23 @@ class AddItems extends React.Component{
 
 	addItem(){
 		//console.log(this.state.userName)
-		var that=this.state;
-
-		 $.ajax({
-      url: `/item`,
+	var obj = {
+		name: this.state.name,
+		image: this.state.image,
+		description: this.state.description,
+		location: this.state.location
+	}
+	$.ajax({
+      url: `/addItem`,
       method: 'POST',
-      data:that
+      data:obj
     })
     .done (function (data) {
+    	alert('Items added succesfuly in your account')
      console.log('ok the data sent ',data)
     })
     .fail(function( jqXHR, textStatus ) {
-      alert("item not found");
+      alert("item not found, textStatus");
     });
 
 	}	

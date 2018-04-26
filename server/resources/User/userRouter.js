@@ -31,7 +31,7 @@ userRouter.route('/loginAuth')
 	})
 
 userRouter.route('/addItem')
-	.get(function (req, res) {
+	.post(function (req, res) {
 		userController.addItem(req, res);
 	})
 
