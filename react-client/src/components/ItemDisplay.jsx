@@ -1,6 +1,6 @@
 import React from 'react';
+import Comments from './comments.jsx';
 import {PanelGroup, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
-
 
 class ItemDisplay extends React.Component {
   constructor(props) {
