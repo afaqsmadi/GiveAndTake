@@ -1,4 +1,5 @@
 import React from 'react';
+import {Label} from 'react-bootstrap';
 class ShowComments extends React.Component{
 	constructor(props){
 		super(props);
@@ -42,9 +43,19 @@ return(
 	<div>
 	{this.state.arr.map(function(result){
 			return (
-			
-				<h4>{result.text} _________________ {result.username}</h4>
-			
+				<div>
+				<h3>
+				<div className='row'>
+				<div className='col-md-9'>
+				<Label bsStyle="success">{result.text}</Label>
+				</div>
+				<div className='col-md-3'>
+<Label bsStyle="default">by: {result.username}</Label>
+				</div>
+				</div>
+				</h3>
+				
+				</div>
 				)
 			}
 		)}

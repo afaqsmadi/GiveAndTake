@@ -1,6 +1,6 @@
 import React from 'react';
 import {PanelGroup, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
-
+import Comments from './comments.jsx';
 
 class ItemDisplay extends React.Component {
   constructor(props) {
@@ -36,6 +36,7 @@ class ItemDisplay extends React.Component {
     }
   }
 
+
   render(){
   	return(
       <div style={{"marginTop": "25px"}}>
@@ -57,7 +58,7 @@ class ItemDisplay extends React.Component {
               </div>
             </div>
             <ListGroup>
-              <ListGroupItem>Comment: </ListGroupItem>
+              <ListGroupItem>Comment: <Comments /></ListGroupItem>
             </ListGroup>
           </Panel.Body>
           <Panel.Footer>Item Belong to : {this.state.item.username}</Panel.Footer>
