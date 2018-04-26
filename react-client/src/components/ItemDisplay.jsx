@@ -57,7 +57,7 @@ class ItemDisplay extends React.Component {
               </div>
             </div>
             <ListGroup>
-              <ListGroupItem>Comment: <Comments /></ListGroupItem>
+              <ListGroupItem>Comment: <Comments id={this.state.item._id}/></ListGroupItem>
             </ListGroup>
           </Panel.Body>
           <Panel.Footer>Item Belong to : {this.state.item.username}</Panel.Footer>

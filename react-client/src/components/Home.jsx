@@ -2,6 +2,8 @@ import React from 'react';
 import ShowComments from './showcomments.jsx';
 import AddItems from './AddItems.jsx';
 import Comments from './comments.jsx';
+import ItemDisplay from './ItemDisplay.jsx';
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -38,16 +40,7 @@ class Home extends React.Component {
     <div>
      {arr.map(function(elem,index){
       return(
-
-        <li key={index}>{elem.name}
-        <p>{elem.image}</p>
-        <p>{elem.dateOfCreation}</p>
-        <p>{elem.location}</p>
-        <p>{elem.description}</p>
-        <p>{elem.available}</p>
-        <hr />
-        </li>
-
+          <ItemDisplay id={elem._id} />
         )
      })}
     </div>

@@ -7,14 +7,9 @@ class Comments extends React.Component{
 		super(props);
 		this.state={
 			text:'',
-			idPost:props.id,
-			refresh:false
-
 		}
 		this.handleChange=this.handleChange.bind(this);
 		this.addComment=this.addComment.bind(this);
-		
-
 	}
 
 	handleChange(e){
@@ -23,45 +18,35 @@ class Comments extends React.Component{
 
 	addComment(){
 		var t=this;
-		console.log('props of  comments',this.state)
-
-		console.log('hello from comment', this.state.text);
-		var that=this.state;
-
+		var obj = {
+			text: this.state.text,
+			idPost: this.props.id
+		}
 		$.ajax({
-      url: `/comments`,
-      method: 'POST',
-      data:that
-    })
-    .done (function (data) {
-     console.log('ok the comment sent ',data)
-     t.setState({
-     	refresh:true
-     })
-    })
-    .fail(function( jqXHR, textStatus ) {
-      alert("comment does not go will");
-    });
-
-    this.state.text='';
-
+	      url: `/comments`,
+	      method: 'POST',
+	      data:obj
+	    })
+	    .done (function (data) {
+	     t.setState({
+	     	refresh:true
+	     })
+	    })
+	    .fail(function( jqXHR, textStatus ) {
+	      alert("comment does not go will");
+	    });
+	    this.state.text='';
 	}
 
 	render(){
-		var x=this.state.idPost;
-		console.log('idpost ',x)
 		return(
 			<div>
-			<ShowComments id={x}/>
+			<ShowComments id={this.props.id}/>
 			<input type='text' name='' value={this.state.text} onChange={this.handleChange} />
 			<Button onClick={this.addComment} bsStyle='primary'>GO</Button>
 			</div>
 			)
 	}
-
-
-
-
 }
 
 export default Comments;
