@@ -62,7 +62,7 @@ class App extends React.Component {
     return (
     <Router history={browserHistory}>
       <div>
-        <Navbar inverse collapseOnSelect>
+        <Navbar bsStyle='inverse' collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
               Take & Give
