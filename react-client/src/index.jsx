@@ -6,7 +6,7 @@ import Home from './components/Home.jsx';
 import Create from './components/Create.jsx';
 import Profile from './components/Profile.jsx';
 import ShowItem from './components/ItemsShow.jsx';
-import {Nav, Navbar, NavItem, MenuItem, NavDropdown} from 'react-bootstrap';
+import {Nav, Navbar, NavItem, MenuItem, NavDropdown, browserHistory} from 'react-bootstrap';
 import {
   BrowserRouter as Router,
   Route,
@@ -59,7 +59,7 @@ class App extends React.Component {
 
   render () {
     return (
-    <Router>
+    <Router history={browserHistory}>
       <div>
         <Navbar inverse collapseOnSelect>
           <Navbar.Header>

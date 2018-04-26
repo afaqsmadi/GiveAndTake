@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var db = require('./db');
+var path = require('path');
 var userRouter = require('./resources/User/userRouter');
 var profileRouter = require('./resources/UserProfile/ProfileRouter');
 var commentsRouter = require('./resources/Comments/CommentsRouter');
@@ -24,7 +25,9 @@ app.use('/user',profileRouter);
 app.use('/item', ItemRouter);
 app.use('/post',PostRouter)
 app.use('/comments', commentsRouter);
-
+app.get('*', function (req, res){
+    res.sendFile(path.resolve(__dirname, '../react-client/dist', 'index.html'))
+})
 app.get('/', function (req, res) {
 });
 

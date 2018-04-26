@@ -7,17 +7,11 @@ userRouter.route('/')
 	})
 
 userRouter.route('/login')
-	.get(function (req, res) {
-		res.redirect('/login.html');
-	})
 	.post(function (req, res) {
 		userController.login(req, res);
 	})
 
 userRouter.route('/create')
-	.get(function (req, res) {
-		res.redirect('/create.html');
-	})
 	.post(function (req, res) {
 		userController.create(req, res);
 	})
