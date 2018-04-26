@@ -98,7 +98,6 @@ class ShowItem extends React.Component {
        <PanelGroup activeKey={this.state.activeKey}
         onSelect={this.handleSelect}>
       {this.state.sItem.map(function(y){
-        console.log('this is y ++++ ',y._id)
         return(
           <div>
             <ItemDisplay id={y._id}/>
