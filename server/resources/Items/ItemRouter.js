@@ -21,6 +21,10 @@ ItemRouter.route('/')
 		// console.log("asdasdas")
 		ItemController.deleteItem(req, res); // deleteItem
 	})
+	ItemRouter.route('/home')
+	.get(function (req, res) {
+		ItemController.limitedItem(req, res);
+	})
 ItemRouter.route('/:id')
 	.get(function (req, res) {
 		ItemController.getItemByID(req, res);
