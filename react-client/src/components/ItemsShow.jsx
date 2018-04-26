@@ -1,5 +1,6 @@
 import React from 'react';
 import Comments from './comments.jsx';
+import ItemDisplay from './ItemDisplay.jsx';
 import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 import {ListGroupItem} from 'react-bootstrap';
@@ -99,31 +100,9 @@ class ShowItem extends React.Component {
       {this.state.sItem.map(function(y){
         console.log('this is y ++++ ',y._id)
         return(
-          <Panel bsStyle={r.getColor(y)}>
-       <Panel.Heading  bsStyle={r.getColor(y)}>
-       <Panel.Title componentClass="h3"  bsStyle={r.getColor(y)} toggle>{y.name}</Panel.Title>
-       </Panel.Heading>
-    <Panel.Body  bsStyle={r.getColor(y)} collapsible>
-        <div className='row'>
-        <div className='col-md-2' style={rcenter}>
-        <img src={y.image} width='70px'/>
-        </div>
-        <div className='col-md-10'>
-        <ListGroupItem  bsStyle={r.getColor(y)}>{y.location}</ListGroupItem>
-        <ListGroupItem  bsStyle={r.getColor(y)}>{y.description}</ListGroupItem>
-        </div>
-        </div>
-    </Panel.Body>
-    <Panel.Footer>
-    
-    here from 2 days
-    <Comments id={y._id}/>
-    </Panel.Footer>
-   
-  </Panel>
-
-        
-        
+          <div>
+            <ItemDisplay id={y._id}/>
+          </div>  
         )
       }
 
@@ -153,3 +132,27 @@ export default ShowItem;
 //             </div>
 
 //           </div>
+
+
+// <Panel bsStyle={r.getColor(y)}>
+//        <Panel.Heading  bsStyle={r.getColor(y)}>
+//        <Panel.Title componentClass="h3"  bsStyle={r.getColor(y)} toggle>{y.name}</Panel.Title>
+//        </Panel.Heading>
+//     <Panel.Body  bsStyle={r.getColor(y)} collapsible>
+//         <div className='row'>
+//         <div className='col-md-2' style={rcenter}>
+//         <img src={y.image} width='70px'/>
+//         </div>
+//         <div className='col-md-10'>
+//         <ListGroupItem  bsStyle={r.getColor(y)}>{y.location}</ListGroupItem>
+//         <ListGroupItem  bsStyle={r.getColor(y)}>{y.description}</ListGroupItem>
+//         </div>
+//         </div>
+//     </Panel.Body>
+//     <Panel.Footer>
+    
+//     here from 2 days
+//     <Comments id={y._id}/>
+//     </Panel.Footer>
+   
+//   </Panel>

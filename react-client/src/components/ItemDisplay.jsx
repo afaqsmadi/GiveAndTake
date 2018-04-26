@@ -5,6 +5,7 @@ import {PanelGroup, Panel} from 'react-bootstrap';
 class ItemDisplay extends React.Component {
   constructor(props) {
     super(props);
+    console.log('props from itemDisplay ',props)
     this.state = {
       item:[]
     }
