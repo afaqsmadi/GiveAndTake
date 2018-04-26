@@ -1,14 +1,14 @@
 import React from 'react';
-import {PanelGroup, Panel} from 'react-bootstrap';
 import Comments from './comments.jsx';
+import {PanelGroup, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
 
 class ItemDisplay extends React.Component {
   constructor(props) {
     super(props);
-    console.log('props from itemDisplay ',props)
     this.state = {
       item:[]
     }
+    this.changeColor = this.changeColor.bind(this);
   }
 
   componentDidMount() {
@@ -28,65 +28,42 @@ class ItemDisplay extends React.Component {
     });
   }
 
-  renderAvailable(){
-    return(
-      <div style={{"marginTop": "25px"}}>
-        <Panel bsStyle="info" eventKey={this.props.eveKey}>
-          <Panel.Heading>
-            <Panel.Title componentClass="h1" toggle>{this.state.item.name}</Panel.Title>
-          </Panel.Heading>
-          <Panel.Body collapsible>
-            <div className="row">
-              <div className="col-md-2">
-               <img src={this.state.item.image} height="200px" className="img-thumbnail" />
-              </div>
-              <div className="col-md-8">
-                <h3>{this.state.item.description}</h3>
-              </div>
-              <div className="col-md-2">
-                <h3>{this.state.item.location}</h3>
-              </div>
-            </div>
-            <div>
-            <Comments />
-            </div>
-          </Panel.Body>
-        </Panel>
-      </div>
-    )
-  }
-
-  renderNotAvailable(){
-    return(
-      <div style={{"marginTop": "25px"}}>
-        <Panel bsStyle="danger" eventKey={this.props.eveKey}>
-          <Panel.Heading>
-            <Panel.Title componentClass="h1" toggle>{this.state.item.name}</Panel.Title>
-          </Panel.Heading>
-          <Panel.Body collapsible>
-            <div className="row">
-              <div className="col-md-2">
-               <img src={this.state.item.image} height="200px" className="img-thumbnail" />
-              </div>
-              <div className="col-md-8">
-                <h3>{this.state.item.description}</h3>
-              </div>
-              <div className="col-md-2">
-                <h3>{this.state.item.location}</h3>
-              </div>
-            </div>
-          </Panel.Body>
-        </Panel>
-      </div>
-    )
+  changeColor() {
+    if (this.state.item.available) {
+      return ('info');
+    } else {
+      return ("danger");
+    }
   }
 
   render(){
-  	if(this.state.item.available === true) {
-      return this.renderAvailable()
-    } else {
-      return this.renderNotAvailable()
-    }
+  	return(
+      <div style={{"marginTop": "25px"}}>
+        <Panel bsStyle= {this.changeColor()} eventKey={this.props.eveKey}>
+          <Panel.Heading>
+            <Panel.Title componentClass="h1" toggle>{this.state.item.name}</Panel.Title>
+          </Panel.Heading>
+          <Panel.Body collapsible>
+            <div className="row">
+              <div className="col-md-2">
+               <img src={this.state.item.image} height="200px" className="img-thumbnail" />
+              </div>
+              <div className="col-md-10">
+                <ListGroup>
+                  <ListGroupItem>Item Description: {this.state.item.description}</ListGroupItem>
+                  <ListGroupItem>Item location: {this.state.item.location}</ListGroupItem>
+                  <ListGroupItem>Item added at: {this.state.item.dateOfCreation}</ListGroupItem>
+                </ListGroup>              
+              </div>
+            </div>
+            <ListGroup>
+              <ListGroupItem>Comment: </ListGroupItem>
+            </ListGroup>
+          </Panel.Body>
+          <Panel.Footer>Item Belong to : {this.state.item.username}</Panel.Footer>
+        </Panel>
+      </div>
+    )
   }
 
 }
