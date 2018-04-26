@@ -3,7 +3,7 @@ var commentController = require('./CommentsController');
 
 commentRouter.route('/')
 	.get(function (req, res) {
-	
+	commentController.retrieve(req,res);
 		})
 		.post(function(req,res){
 		commentController.createComment(req,res);

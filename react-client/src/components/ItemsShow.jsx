@@ -1,4 +1,5 @@
 import React from 'react';
+import Comments from './comments.jsx';
 import { Button } from 'react-bootstrap';
 import { Panel } from 'react-bootstrap';
 import {ListGroupItem} from 'react-bootstrap';
@@ -96,6 +97,7 @@ class ShowItem extends React.Component {
        <PanelGroup activeKey={this.state.activeKey}
         onSelect={this.handleSelect}>
       {this.state.sItem.map(function(y){
+        console.log('this is y ++++ ',y._id)
         return(
           <Panel bsStyle={r.getColor(y)}>
        <Panel.Heading  bsStyle={r.getColor(y)}>
@@ -115,7 +117,7 @@ class ShowItem extends React.Component {
     <Panel.Footer>
     
     here from 2 days
-
+    <Comments id={y._id}/>
     </Panel.Footer>
    
   </Panel>

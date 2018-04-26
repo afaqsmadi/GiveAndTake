@@ -3,7 +3,7 @@ var db = require('../../db');
 
 var commentsSchema= mongoose.Schema({
 	idPost: String,
-	idUser: String,
+	username: String,
 	text: String,
 	date:{type: Date, default: Date.now}
 })

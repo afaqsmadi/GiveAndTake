@@ -1,5 +1,7 @@
 import React from 'react';
+import ShowComments from './showcomments.jsx';
 import AddItems from './AddItems.jsx';
+import Comments from './comments.jsx';
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,8 @@ class Home extends React.Component {
   		<div>
   		<h1> Welcome {firstName} {lastName} </h1>
      <AddItems r={this.props}/>
-  		</div>
+  		<Comments />
+      </div>
   	)
   }
 
