@@ -1,6 +1,6 @@
 import React from 'react';
 import {PanelGroup, Panel} from 'react-bootstrap';
-
+import Comments from './comments.jsx';
 
 class ItemDisplay extends React.Component {
   constructor(props) {
@@ -46,6 +46,9 @@ class ItemDisplay extends React.Component {
               <div className="col-md-2">
                 <h3>{this.state.item.location}</h3>
               </div>
+            </div>
+            <div>
+            <Comments />
             </div>
           </Panel.Body>
         </Panel>
