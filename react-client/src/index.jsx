@@ -48,7 +48,7 @@ class App extends React.Component {
       data: obj
     })
     .done (function (data) {
-      console.log('Login successfully');
+      alert('Login successfully');
       that.setState({
         user: data
       });
@@ -61,7 +61,7 @@ class App extends React.Component {
   render () {
     return (
     <Router history={browserHistory}>
-      <div>
+      <div className="container-fluid">
         <Navbar bsStyle='inverse' collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
@@ -100,7 +100,6 @@ class App extends React.Component {
         <Route path="/AllItems" render={()=><ShowItem />}/>
         <Route path="/profile" render={()=><Profile username={this.state.user.username}/>}/>
       </div>
-
     </Router>
     )
   }

@@ -4,7 +4,6 @@ import AddItems from './AddItems.jsx';
 import Comments from './comments.jsx';
 import ItemDisplay from './ItemDisplay.jsx';
 
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -13,14 +12,14 @@ class Home extends React.Component {
     }
   }
   
-  componentDidMount(){
+  componentDidMount() {
     var that = this;
-    var arr = this.state.arr
+    var arr = this.state.arr;
     $.ajax({
       url: '/item/home',
       method: "GET"
     })
-    .done(function(data){
+    .done(function(data) {
       that.setState({
         arr: data
       })
@@ -31,21 +30,19 @@ class Home extends React.Component {
   }
 
   render(){
-    var arr= this.state.arr
-    var array = []
-     if(arr.length===0){
-      return(<h1>not found!</h1>)
-     }
-  return(
-    <div>
-     {arr.map(function(elem,index){
-      return(
-          <ItemDisplay id={elem._id} />
+    if(this.state.arr.length===0){
+      return(<h1>No items!</h1>)
+    }
+    return(
+      <div>
+        <div className='text-center'><h1> Last 5 Items </h1></div>
+        {this.state.arr.map(function(elem,index){
+        return(
+            <ItemDisplay id={elem._id} key={index}/>
         )
-     })}
-    </div>
+       })}
+      </div>
     )
-
   }
 }
 export default Home;
