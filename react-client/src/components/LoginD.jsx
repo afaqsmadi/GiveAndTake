@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button } from 'react-bootstrap';
-import {Modal} from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
+import { Redirect } from 'react-router'
+
 class LoginD extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -42,14 +42,13 @@ class LoginD extends React.Component {
     }
     this.props.loginAuthen(obj);
     this.handleClose();
+    return <Redirect to='/profile'/>;
   }
 
   render() {
-
     return (
       <div>
         <h2> Welcome </h2>
-
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Login</Modal.Title>
@@ -67,17 +66,17 @@ class LoginD extends React.Component {
             </form>
           </Modal.Body>
           <Modal.Footer>
-          <div className ="row" >
-            <div className="col-md-8" >
-            <button onClick={this.sendLogin} className="btn btn-u pull-left">Login</button>
-              Don't have an account! 
-            <a href="/create">
-              Sign Up Here
-            </a>
-            </div>
-            <div className="col-md-4">
-            <Button onClick={this.handleClose}>Close</Button>
-            </div>
+            <div className ="row" >
+              <div className="col-md-8" >
+                <button onClick={this.sendLogin} className="btn btn-u pull-left">Login</button>
+                  Don't have an account! 
+                <a href="/create">
+                  Sign Up Here
+                </a>
+              </div>
+              <div className="col-md-4">
+                <Button onClick={this.handleClose}>Close</Button>
+              </div>
             </div>
           </Modal.Footer>
         </Modal>

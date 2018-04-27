@@ -90,7 +90,7 @@
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 body {
-    width: 80%;
+    
     padding-top: 10px;
     margin: auto;
 }

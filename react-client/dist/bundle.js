@@ -139,7 +139,7 @@
 	        method: 'POST',
 	        data: obj
 	      }).done(function (data) {
-	        console.log('Login successfully');
+	        alert('Login successfully');
 	        that.setState({
 	          user: data
 	        });
@@ -157,7 +157,7 @@
 	        { history: _reactBootstrap.browserHistory },
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'container-fluid' },
 	          _react2.default.createElement(
 	            _reactBootstrap.Navbar,
 	            { bsStyle: 'inverse', collapseOnSelect: true },
@@ -33080,11 +33080,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(/*! react-dom */ 37);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
 	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 186);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 500);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33145,11 +33143,11 @@
 	      };
 	      this.props.loginAuthen(obj);
 	      this.handleClose();
+	      return _react2.default.createElement(_reactRouter.Redirect, { to: '/profile' });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -55329,20 +55327,27 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var arr = this.state.arr;
-	      var array = [];
-	      if (arr.length === 0) {
+	      if (this.state.arr.length === 0) {
 	        return _react2.default.createElement(
 	          'h1',
 	          null,
-	          'not found!'
+	          'No items!'
 	        );
 	      }
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        arr.map(function (elem, index) {
-	          return _react2.default.createElement(_ItemDisplay2.default, { id: elem._id });
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'text-center' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            ' Last 5 Items '
+	          )
+	        ),
+	        this.state.arr.map(function (elem, index) {
+	          return _react2.default.createElement(_ItemDisplay2.default, { id: elem._id, key: index });
 	        })
 	      );
 	    }
@@ -55391,7 +55396,6 @@
 			var _this = _possibleConstructorReturn(this, (ShowComments.__proto__ || Object.getPrototypeOf(ShowComments)).call(this, props));
 	
 			_this.state = {
-	
 				arr: []
 			};
 			return _this;
@@ -55414,7 +55418,6 @@
 					that.setState({
 						arr: x
 					});
-					console.log('comments recived ', data);
 				}).fail(function (jqXHR, textStatus) {
 					alert("no Items found");
 				});
@@ -55527,7 +55530,7 @@
 		}, {
 			key: 'addItem',
 			value: function addItem() {
-				//console.log(this.state.userName)
+				var that = this;
 				var obj = {
 					name: this.state.name,
 					image: this.state.image,
@@ -55540,7 +55543,12 @@
 					data: obj
 				}).done(function (data) {
 					alert('Items added succesfuly in your account');
-					console.log('ok the data sent ', data);
+					that.setState({
+						name: '',
+						location: '',
+						image: '',
+						description: ''
+					});
 				}).fail(function (jqXHR, textStatus) {
 					alert("item not found, textStatus");
 				});
@@ -55548,13 +55556,12 @@
 		}, {
 			key: 'render',
 			value: function render() {
-	
 				return _react2.default.createElement(
 					'div',
 					null,
 					_react2.default.createElement(
 						_reactBootstrap.Panel,
-						null,
+						{ bsStyle: 'primary' },
 						_react2.default.createElement(
 							_reactBootstrap.Panel.Heading,
 							null,
@@ -55569,33 +55576,68 @@
 								_react2.default.createElement(
 									_reactBootstrap.ListGroupItem,
 									null,
-									'Item Name',
-									_react2.default.createElement('input', { type: 'text', name: 'name', value: this.state.name, onChange: this.handleChange })
+									_react2.default.createElement(
+										_reactBootstrap.FormGroup,
+										{ bsSize: 'large' },
+										_react2.default.createElement(_reactBootstrap.FormControl, {
+											type: 'text',
+											name: 'name',
+											value: this.state.name,
+											placeholder: 'Item Name',
+											onChange: this.handleChange
+										})
+									)
 								),
 								_react2.default.createElement(
 									_reactBootstrap.ListGroupItem,
 									null,
-									'Location',
-									_react2.default.createElement('input', { type: 'text', name: 'location', value: this.state.location, onChange: this.handleChange })
+									_react2.default.createElement(
+										_reactBootstrap.FormGroup,
+										{ bsSize: 'large' },
+										_react2.default.createElement(_reactBootstrap.FormControl, {
+											type: 'text',
+											name: 'location',
+											value: this.state.location,
+											placeholder: 'Location',
+											onChange: this.handleChange
+										})
+									)
 								),
 								_react2.default.createElement(
 									_reactBootstrap.ListGroupItem,
 									null,
-									'Image',
-									_react2.default.createElement('input', { type: 'text', name: 'image', value: this.state.image, onChange: this.handleChange })
+									_react2.default.createElement(
+										_reactBootstrap.FormGroup,
+										{ bsSize: 'large' },
+										_react2.default.createElement(_reactBootstrap.FormControl, {
+											type: 'text',
+											name: 'image',
+											value: this.state.image,
+											placeholder: 'Image',
+											onChange: this.handleChange
+										})
+									)
 								),
 								_react2.default.createElement(
 									_reactBootstrap.ListGroupItem,
 									null,
-									'Description',
-									_react2.default.createElement('input', { type: 'text', name: 'description', value: this.state.description, onChange: this.handleChange })
+									_react2.default.createElement(
+										_reactBootstrap.FormGroup,
+										{ bsSize: 'large' },
+										_react2.default.createElement(_reactBootstrap.FormControl, {
+											type: 'text',
+											name: 'description',
+											value: this.state.description,
+											placeholder: 'Description',
+											onChange: this.handleChange
+										})
+									)
 								)
 							)
 						),
 						_react2.default.createElement(
 							_reactBootstrap.Panel.Footer,
 							null,
-							'the button goes here',
 							_react2.default.createElement(
 								_reactBootstrap.Button,
 								{ bsStyle: 'primary', onClick: this.addItem },
@@ -55719,7 +55761,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -55743,167 +55785,130 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Create = function (_React$Component) {
-	    _inherits(Create, _React$Component);
+	  _inherits(Create, _React$Component);
 	
-	    function Create(props, context) {
-	        _classCallCheck(this, Create);
+	  function Create(props, context) {
+	    _classCallCheck(this, Create);
 	
-	        return _possibleConstructorReturn(this, (Create.__proto__ || Object.getPrototypeOf(Create)).call(this, props, context));
-	    }
+	    return _possibleConstructorReturn(this, (Create.__proto__ || Object.getPrototypeOf(Create)).call(this, props, context));
+	  }
 	
-	    _createClass(Create, [{
-	        key: 'render',
-	        value: function render() {
-	            console.log('hello from create', this.props);
-	            return _react2.default.createElement(
+	  _createClass(Create, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log('hello from create', this.props);
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement('div', { className: 'col-md-3' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-md-6' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row outerBorder' },
+	            _react2.default.createElement(
+	              'h4',
+	              { style: { "color": "#078b8f", "margin": "initial", "marginBottom": "10px" } },
+	              'Sign Up Now'
+	            ),
+	            _react2.default.createElement(
+	              'form',
+	              { action: '/create', method: 'post', style: { "width": '100%' } },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-group margin-bottom-20' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'input-group-addon' },
+	                  _react2.default.createElement('i', { className: 'glyphicon glyphicon-user mycolor' })
+	                ),
+	                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'User Name', name: 'username', id: 'UserRegistration_username', type: 'text' })
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-group margin-bottom-20' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'input-group-addon' },
+	                  _react2.default.createElement('i', { className: 'glyphicon glyphicon-lock mycolor' })
+	                ),
+	                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'Password', name: 'password', id: 'UserRegistration_password', type: 'password' })
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-group margin-bottom-20' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'input-group-addon' },
+	                  _react2.default.createElement('i', { className: 'glyphicon glyphicon-user mycolor' })
+	                ),
+	                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'First Name', name: 'firstName', id: 'UserRegistration_fname', type: 'text' })
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-group margin-bottom-20' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'input-group-addon' },
+	                  _react2.default.createElement('i', { className: 'glyphicon glyphicon-user mycolor' })
+	                ),
+	                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'Last Name', name: 'lastName', id: 'UserRegistration_lname', type: 'text' })
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-group margin-bottom-20' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'input-group-addon' },
+	                  _react2.default.createElement('i', { className: 'glyphicon glyphicon-envelope mycolor' })
+	                ),
+	                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'Email', name: 'email', id: 'UserRegistration_address', type: 'text' })
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-group margin-bottom-20' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'input-group-addon' },
+	                  _react2.default.createElement('i', { className: 'glyphicon glyphicon-picture mycolor' })
+	                ),
+	                _react2.default.createElement('input', { className: 'form-control', placeholder: 'image', name: 'imgUrl', id: 'UserRegistration_Image', type: 'text' })
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-group margin-bottom-20' },
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'input-group-addon' },
+	                  _react2.default.createElement('i', { className: 'glyphicon glyphicon-question-sign mycolor' })
+	                ),
+	                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'About', name: 'about', id: 'UserRegistration_contactnumber', type: 'text' })
+	              ),
+	              _react2.default.createElement(
 	                'div',
 	                { className: 'row' },
-	                _react2.default.createElement('div', { className: 'col-md-3' }),
 	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'col-md-6' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'row outerBorder' },
-	                        _react2.default.createElement(
-	                            'h4',
-	                            { style: { "color": "#078b8f", "margin": "initial", "marginBottom": "10px" } },
-	                            'Sign Up Now'
-	                        ),
-	                        _react2.default.createElement(
-	                            'form',
-	                            { action: '/create', method: 'post', style: { "width": '100%' } },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'input-group margin-bottom-20' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'input-group-addon' },
-	                                    _react2.default.createElement('i', { className: 'glyphicon glyphicon-user mycolor' })
-	                                ),
-	                                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'User Name', name: 'username', id: 'UserRegistration_username', type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'input-group margin-bottom-20' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'input-group-addon' },
-	                                    _react2.default.createElement('i', { className: 'glyphicon glyphicon-lock mycolor' })
-	                                ),
-	                                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'Password', name: 'password', id: 'UserRegistration_password', type: 'password' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'input-group margin-bottom-20' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'input-group-addon' },
-	                                    _react2.default.createElement('i', { className: 'glyphicon glyphicon-user mycolor' })
-	                                ),
-	                                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'First Name', name: 'firstName', id: 'UserRegistration_fname', type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'input-group margin-bottom-20' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'input-group-addon' },
-	                                    _react2.default.createElement('i', { className: 'glyphicon glyphicon-user mycolor' })
-	                                ),
-	                                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'Last Name', name: 'lastName', id: 'UserRegistration_lname', type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'input-group margin-bottom-20' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'input-group-addon' },
-	                                    _react2.default.createElement('i', { className: 'glyphicon glyphicon-envelope mycolor' })
-	                                ),
-	                                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'Email', name: 'email', id: 'UserRegistration_address', type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'input-group margin-bottom-20' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'input-group-addon' },
-	                                    _react2.default.createElement('i', { className: 'glyphicon glyphicon-picture mycolor' })
-	                                ),
-	                                _react2.default.createElement('input', { className: 'form-control', placeholder: 'image', name: 'imgUrl', id: 'UserRegistration_Image', type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'input-group margin-bottom-20' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'input-group-addon' },
-	                                    _react2.default.createElement('i', { className: 'glyphicon glyphicon-question-sign mycolor' })
-	                                ),
-	                                _react2.default.createElement('input', { size: '60', className: 'form-control', placeholder: 'About', name: 'about', id: 'UserRegistration_contactnumber', type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'row' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'col-md-12' },
-	                                    _react2.default.createElement(
-	                                        'button',
-	                                        { className: 'btn btn-u pull-left', type: 'submit' },
-	                                        'Sign Up'
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    )
+	                  'div',
+	                  { className: 'col-md-12' },
+	                  _react2.default.createElement(
+	                    'button',
+	                    { className: 'btn btn-u pull-left', type: 'submit' },
+	                    'Sign Up'
+	                  )
 	                )
-	            );
-	        }
-	    }]);
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
 	
-	    return Create;
+	  return Create;
 	}(_react2.default.Component);
 	
 	exports.default = Create;
-	
-	/*
-	<div class="input-group margin-bottom-20">
-	                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock mycolor"></i></span>
-	                  <input size="60" maxlength="255" class="form-control" placeholder="Password" name="password" id="UserRegistration_password" type="password">                                    
-	              </div>
-	              <div class="input-group margin-bottom-20">
-	                  <span class="input-group-addon"><i class="glyphicon glyphicon-user mycolor"></i></span>
-	                  <input size="60" maxlength="255" class="form-control" placeholder="First Name" name="firstName" id="UserRegistration_fname" type="text">                                    
-	              </div>
-	              <div class="input-group margin-bottom-20">
-	                  <span class="input-group-addon"><i class="glyphicon glyphicon-user mycolor"></i></span>
-	                  <input size="60" maxlength="255" class="form-control" placeholder="Last Name" name="lastName" id="UserRegistration_lname" type="text">                                    
-	              </div>
-	              <div class="input-group margin-bottom-20">
-	                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope mycolor"></i></span>
-	                  <input size="60" maxlength="255" class="form-control" placeholder="Email" name="email" id="UserRegistration_address" type="text">                                    
-	              </div>
-	              <div class="input-group margin-bottom-20">
-	                  <span class="input-group-addon"><i class="glyphicon glyphicon-picture mycolor"></i></span>
-	                  <input size="60" maxlength="255" class="form-control" placeholder="image" name="imgUrl" id="UserRegistration_lname" type="text">                                    
-	              </div>
-	              <div class="input-group margin-bottom-20">
-	                  <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign mycolor"></i></span>
-	                  <input size="60" maxlength="255" class="form-control" placeholder="About" name="about" id="UserRegistration_contactnumber" type="text">                                    
-	              </div>
-	              <div class="row">
-	                  <div class="col-md-12">
-	                      <button class="btn btn-u pull-left" type="submit">Sign Up</button>
-	                  </div>
-	              </div>
-	            </form>
-	        </div>
-	        <div class="col-md-2"></div>
-	    </div>
-	</div>
-	*/
 
 /***/ }),
 /* 461 */
@@ -55967,7 +55972,6 @@
 	  _createClass(Profile, [{
 	    key: 'edit',
 	    value: function edit() {
-	      console.log('edit function');
 	      this.setState({
 	        editing: true
 	      });
@@ -55975,55 +55979,26 @@
 	  }, {
 	    key: 'save',
 	    value: function save() {
-	      console.log('save function here ');
 	      var that = this;
-	
-	      console.log('user state ', this.state.user.firstName);
 	      this.state.user.firstName = this.state.firstName;
 	      this.state.user.lastName = this.state.lastName;
 	      this.state.user.about = this.state.about;
-	
-	      // this.setState({
-	      //   user.firstName:this.state.firstName,
-	      //   user.lastName:this.state.lastName,
-	      //   user.about:this.state.about
-	      // })
-	
-	      console.log('updated users ', this.state.user);
 	      var user = this.state.user.username;
-	      console.log("new", user);
 	      $.ajax({
 	        url: '/user/' + user,
 	        type: 'PUT',
 	        data: JSON.stringify(this.state),
 	        contentType: 'application/json',
 	        success: function success(result) {
-	          alert("success?");
+	          alert("Successful updated");
 	        }
 	      });
-	      // $.ajax({
-	      //    url: `/user/${user}`,
-	      //    method: 'PUT',
-	      //    data:this.state
-	
-	      //  })
-	      //  .done (function (data) {
-	      //    console.log("post",data)
-	
-	      //    // that.setState({
-	      //    //   user: data
-	      //    // });
-	      //  })
-	      //  .fail(function( jqXHR, textStatus ) {
-	      //    alert( "No user Found");
-	      //  });
 	    }
 	  }, {
 	    key: 'handelChange',
 	    value: function handelChange(e) {
 	      this.setState({
 	        firstName: e.target.value
-	
 	      });
 	    }
 	  }, {
@@ -56031,7 +56006,6 @@
 	    value: function handelChange2(e) {
 	      this.setState({
 	        lastName: e.target.value
-	
 	      });
 	    }
 	  }, {
@@ -56039,7 +56013,6 @@
 	    value: function handelChange3(e) {
 	      this.setState({
 	        about: e.target.value
-	
 	      });
 	    }
 	  }, {
@@ -56047,7 +56020,6 @@
 	    value: function componentDidMount() {
 	      var that = this;
 	      var user = this.props.username;
-	      console.log('this is user ', user);
 	      $.ajax({
 	        url: '/user/' + user,
 	        method: 'GET'
@@ -56092,7 +56064,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col-md-3', style: { 'paddingLeft': '20px' } },
-	            _react2.default.createElement('img', { src: imgUrl, width: '250px', className: 'img-thumbnail img-rounded' })
+	            _react2.default.createElement('img', { src: imgUrl, width: '250px', className: 'img-thumbnail' })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -56137,36 +56109,36 @@
 	    key: 'renderedit',
 	    value: function renderedit() {
 	      var user = this.state.user;
-	      // var firstName = user.firstName;
-	      // var lastName = user.lastName;
 	      var imgUrl = user.imgUrl;
-	      // var about = user.about;
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'row' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-3', style: { 'paddingLeft': '20px' } },
-	          _react2.default.createElement('img', { src: imgUrl, width: '250px' })
+	          _react2.default.createElement('img', { src: imgUrl, width: '250px', className: 'img-thumbnail' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-9' },
 	          _react2.default.createElement(_reactBootstrap.FormControl, {
+	            bsSize: 'large',
 	            value: this.state.firstName,
-	            placeholder: 'Enter text',
+	            placeholder: 'First Name',
 	            onChange: this.handelChange
 	          }),
 	          _react2.default.createElement('hr', null),
 	          _react2.default.createElement(_reactBootstrap.FormControl, {
+	            bsSize: 'large',
 	            value: this.state.lastName,
-	            placeholder: 'Enter firstName',
+	            placeholder: 'Last name',
 	            onChange: this.handelChange2
 	          }),
 	          _react2.default.createElement('hr', null),
 	          _react2.default.createElement(_reactBootstrap.FormControl, {
+	            bsSize: 'large',
 	            value: this.state.about,
-	            placeholder: 'Enter text',
+	            placeholder: 'About',
 	            onChange: this.handelChange3
 	          }),
 	          _react2.default.createElement('hr', null),
@@ -56181,7 +56153,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      if (this.state.editing) {
 	        return this.renderedit();
 	      } else {
@@ -56240,6 +56211,7 @@
 	      item: []
 	    };
 	    _this.changeColor = _this.changeColor.bind(_this);
+	    _this.availability = _this.availability.bind(_this);
 	    return _this;
 	  }
 	
@@ -56263,9 +56235,18 @@
 	    key: 'changeColor',
 	    value: function changeColor() {
 	      if (this.state.item.available) {
-	        return 'info';
+	        return "info";
 	      } else {
 	        return "danger";
+	      }
+	    }
+	  }, {
+	    key: 'availability',
+	    value: function availability() {
+	      if (this.state.item.available) {
+	        return "Yes";
+	      } else {
+	        return "No";
 	      }
 	    }
 	  }, {
@@ -56314,6 +56295,12 @@
 	                    null,
 	                    'Item location: ',
 	                    this.state.item.location
+	                  ),
+	                  _react2.default.createElement(
+	                    _reactBootstrap.ListGroupItem,
+	                    null,
+	                    'Item available: ',
+	                    this.availability()
 	                  ),
 	                  _react2.default.createElement(
 	                    _reactBootstrap.ListGroupItem,
@@ -56402,7 +56389,6 @@
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.getItem = _this.getItem.bind(_this);
-	    _this.getColor = _this.getColor.bind(_this);
 	    return _this;
 	  }
 	
@@ -56450,30 +56436,11 @@
 	          that.setState({ sItem: x });
 	          console.log('sItem= ', that.state.sItem);
 	        }
-	
 	      });
-	    }
-	  }, {
-	    key: 'getColor',
-	    value: function getColor(y) {
-	      if (y.available === true) {
-	        return 'info';
-	      } else {
-	        return 'danger';
-	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var rstyle = {
-	
-	        align: 'center',
-	        background: '#ABCDEF'
-	      };
-	
-	      var rcenter = {
-	        textAlign: 'center'
-	      };
 	      var r = this;
 	      return _react2.default.createElement(
 	        'div',
@@ -56483,7 +56450,15 @@
 	          null,
 	          ' search '
 	        ),
-	        _react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleChange }),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { bsSize: 'large' },
+	          _react2.default.createElement(_reactBootstrap.FormControl, {
+	            value: this.state.value,
+	            placeholder: 'Search',
+	            onChange: this.handleChange
+	          })
+	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
 	          { onClick: this.getItem, bsStyle: 'primary' },
@@ -56513,43 +56488,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = ShowItem;
-	
-	// <div className='row' style={rstyle}>
-	//             <div className='col-md-4' >
-	//             {y.image}
-	//             </div>
-	//             <div className='col-md-8'>
-	//            <h5> {y.name} </h5>
-	//            <h5> {y.available} </h5>
-	//            <h5> {y.location} </h5>
-	//            <h5> {y.description} </h5>
-	//             </div>
-	
-	//           </div>
-	
-	
-	// <Panel bsStyle={r.getColor(y)}>
-	//        <Panel.Heading  bsStyle={r.getColor(y)}>
-	//        <Panel.Title componentClass="h3"  bsStyle={r.getColor(y)} toggle>{y.name}</Panel.Title>
-	//        </Panel.Heading>
-	//     <Panel.Body  bsStyle={r.getColor(y)} collapsible>
-	//         <div className='row'>
-	//         <div className='col-md-2' style={rcenter}>
-	//         <img src={y.image} width='70px'/>
-	//         </div>
-	//         <div className='col-md-10'>
-	//         <ListGroupItem  bsStyle={r.getColor(y)}>{y.location}</ListGroupItem>
-	//         <ListGroupItem  bsStyle={r.getColor(y)}>{y.description}</ListGroupItem>
-	//         </div>
-	//         </div>
-	//     </Panel.Body>
-	//     <Panel.Footer>
-	
-	//     here from 2 days
-	//     <Comments id={y._id}/>
-	//     </Panel.Footer>
-	
-	//   </Panel>
 
 /***/ }),
 /* 464 */
@@ -60040,6 +59978,66 @@
 	    };
 	})));
 
+
+/***/ }),
+/* 500 */
+/*!*********************************!*\
+  !*** ./~/react-router/index.js ***!
+  \*********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.withRouter = exports.matchPath = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.Redirect = exports.Prompt = exports.MemoryRouter = undefined;
+	
+	var _MemoryRouter2 = __webpack_require__(/*! ./MemoryRouter */ 479);
+	
+	var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
+	
+	var _Prompt2 = __webpack_require__(/*! ./Prompt */ 488);
+	
+	var _Prompt3 = _interopRequireDefault(_Prompt2);
+	
+	var _Redirect2 = __webpack_require__(/*! ./Redirect */ 490);
+	
+	var _Redirect3 = _interopRequireDefault(_Redirect2);
+	
+	var _Route2 = __webpack_require__(/*! ./Route */ 483);
+	
+	var _Route3 = _interopRequireDefault(_Route2);
+	
+	var _Router2 = __webpack_require__(/*! ./Router */ 474);
+	
+	var _Router3 = _interopRequireDefault(_Router2);
+	
+	var _StaticRouter2 = __webpack_require__(/*! ./StaticRouter */ 493);
+	
+	var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
+	
+	var _Switch2 = __webpack_require__(/*! ./Switch */ 495);
+	
+	var _Switch3 = _interopRequireDefault(_Switch2);
+	
+	var _matchPath2 = __webpack_require__(/*! ./matchPath */ 484);
+	
+	var _matchPath3 = _interopRequireDefault(_matchPath2);
+	
+	var _withRouter2 = __webpack_require__(/*! ./withRouter */ 498);
+	
+	var _withRouter3 = _interopRequireDefault(_withRouter2);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.MemoryRouter = _MemoryRouter3.default;
+	exports.Prompt = _Prompt3.default;
+	exports.Redirect = _Redirect3.default;
+	exports.Route = _Route3.default;
+	exports.Router = _Router3.default;
+	exports.StaticRouter = _StaticRouter3.default;
+	exports.Switch = _Switch3.default;
+	exports.matchPath = _matchPath3.default;
+	exports.withRouter = _withRouter3.default;
 
 /***/ })
 /******/ ]);

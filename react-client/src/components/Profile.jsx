@@ -1,9 +1,6 @@
 import React from 'react';
 import ItemDisplay from './ItemDisplay.jsx';
-import {PanelGroup, Panel} from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { Well } from 'react-bootstrap';
-import { FormControl } from 'react-bootstrap';
+import { PanelGroup, Panel, Button, Well, FormControl } from 'react-bootstrap';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -25,81 +22,47 @@ class Profile extends React.Component {
      this.handelChange3=this.handelChange3.bind(this)
   }
   edit(){
-    console.log('edit function')
     this.setState({
       editing:true
     })
   }
- save(){
-  console.log('save function here ')
-  var that=this
-
-  console.log('user state ',
-    this.state.user.firstName
-    )
-  this.state.user.firstName=this.state.firstName;
-  this.state.user.lastName=this.state.lastName;
-  this.state.user.about=this.state.about;
-
-    // this.setState({
-    //   user.firstName:this.state.firstName,
-    //   user.lastName:this.state.lastName,
-    //   user.about:this.state.about
-    // })
-
-    console.log('updated users ',this.state.user)
+  save(){
+    var that=this
+    this.state.user.firstName=this.state.firstName;
+    this.state.user.lastName=this.state.lastName;
+    this.state.user.about=this.state.about;
     var user=this.state.user.username
-    console.log("new",user)
-   $.ajax({
-            url: `/user/${user}` ,
-            type: 'PUT',    
-            data: JSON.stringify(this.state),
-            contentType: 'application/json',
-            success: function(result) {
-                alert("success?");
-            }
-        })
-   // $.ajax({
-   //    url: `/user/${user}`,
-   //    method: 'PUT',
-   //    data:this.state
-
-   //  })
-   //  .done (function (data) {
-   //    console.log("post",data)
-
-   //    // that.setState({
-   //    //   user: data
-   //    // });
-   //  })
-   //  .fail(function( jqXHR, textStatus ) {
-   //    alert( "No user Found");
-   //  });
+    $.ajax({
+      url: `/user/${user}` ,
+      type: 'PUT',    
+      data: JSON.stringify(this.state),
+      contentType: 'application/json',
+      success: function(result) {
+          alert("Successful updated");
+      }
+    })
   }
  
-handelChange(e){
-this.setState({
-  firstName:e.target.value
+  handelChange(e){
+    this.setState({
+      firstName:e.target.value
+    })
+  }
 
-})
-}
-handelChange2(e){
-this.setState({
-  lastName:e.target.value
-
-})
-}
-handelChange3(e){
-this.setState({
-  about:e.target.value
-
-})
-}
+  handelChange2(e){
+    this.setState({
+      lastName:e.target.value
+    })
+  }
+  handelChange3(e){
+    this.setState({
+      about:e.target.value
+    })
+  }
 
   componentDidMount() {
     var that = this;
     var user = this.props.username
-    console.log('this is user ',user);
     $.ajax({
       url: `/user/${user}`,
       method: 'GET',
@@ -113,6 +76,7 @@ this.setState({
       alert( "No user Found");
     });
   }
+
   renderStart(){
     var user = this.state.user;
     var firstName = user.firstName;
@@ -135,7 +99,7 @@ this.setState({
       <div>
         <div className="row">
           <div className="col-md-3" style={{'paddingLeft':'20px'}}>
-            <img src={imgUrl}  width = '250px' className="img-thumbnail img-rounded"/>
+            <img src={imgUrl}  width = '250px' className="img-thumbnail"/>
           </div>
           <div className='col-md-9'>
             <Well>{firstName} {lastName} Profile</Well>
@@ -151,61 +115,54 @@ this.setState({
       </div>
     )
   }
-    renderedit(){
+
+  renderedit(){
     var user = this.state.user;
-    // var firstName = user.firstName;
-    // var lastName = user.lastName;
     var imgUrl = user.imgUrl;
-    // var about = user.about;
     return(
-       <div className="row">
-      <div className="col-md-3" style={{'paddingLeft':'20px'}}>
-          <img src={imgUrl}  width = '250px'/>
+      <div className="row">
+        <div className="col-md-3" style={{'paddingLeft':'20px'}}>
+          <img src={imgUrl}  width = '250px' className="img-thumbnail"/>
         </div>
         <div className='col-md-9'>
-         <FormControl
+          <FormControl
+            bsSize="large"
             value={this.state.firstName}
-            placeholder="Enter text"
+            placeholder="First Name"
             onChange={this.handelChange}
           />
           <hr></hr>
           <FormControl
+            bsSize="large"
             value={this.state.lastName}
-            placeholder="Enter firstName"
+            placeholder="Last name"
             onChange={this.handelChange2}
           />
           <hr></hr>
-            <FormControl
+          <FormControl
+            bsSize="large"
             value={this.state.about}
-            placeholder="Enter text"
+            placeholder="About"
             onChange={this.handelChange3}
           />
           <hr></hr>
-     <Button bsStyle="success" onClick={this.save}> save</Button>
-      </div>
+          <Button bsStyle="success" onClick={this.save}> save</Button>
+        </div>
       </div>
     )
   }
 
-  render(){
-
-  if(this.state.editing){
-    return(
-     this.renderedit()
+  render() {
+    if(this.state.editing){
+      return(
+        this.renderedit()
       )
     }
-    else{
+    else {
       return(
-      this.renderStart ()
-        )
-
-      
+        this.renderStart ()
+      )
     }
-
   }
-  
-
-
-
 }
 export default Profile;

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Label} from 'react-bootstrap';
+
 class ShowComments extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-
 			arr:[]
 		}
 	}
@@ -25,7 +25,6 @@ class ShowComments extends React.Component{
 	        that.setState({
 	        	arr:x
 	        })
-	      console.log('comments recived ',data)
 	    })
 	    .fail(function( jqXHR, textStatus ) {
 	      alert( "no Items found");
@@ -34,7 +33,7 @@ class ShowComments extends React.Component{
 
 	render(){
 		var itemId=this.props.id;
-		var elem=this.state.arr
+		var elem=this.state.arr;
 		return(
 			<div>
 			{this.state.arr.map(function(result){

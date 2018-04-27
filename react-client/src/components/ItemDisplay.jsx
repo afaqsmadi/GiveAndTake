@@ -9,6 +9,7 @@ class ItemDisplay extends React.Component {
       item:[]
     }
     this.changeColor = this.changeColor.bind(this);
+    this.availability = this.availability.bind(this);
   }
 
   componentDidMount() {
@@ -30,9 +31,17 @@ class ItemDisplay extends React.Component {
 
   changeColor() {
     if (this.state.item.available) {
-      return ('info');
+      return "info";
     } else {
-      return ("danger");
+      return "danger";
+    }
+  }
+
+  availability() {
+    if (this.state.item.available) {
+      return "Yes"
+    } else {
+      return "No"
     }
   }
 
@@ -52,6 +61,7 @@ class ItemDisplay extends React.Component {
                 <ListGroup>
                   <ListGroupItem>Item Description: {this.state.item.description}</ListGroupItem>
                   <ListGroupItem>Item location: {this.state.item.location}</ListGroupItem>
+                  <ListGroupItem>Item available: {this.availability()}</ListGroupItem>
                   <ListGroupItem>Item added at: {this.state.item.dateOfCreation}</ListGroupItem>
                 </ListGroup>              
               </div>
@@ -65,6 +75,5 @@ class ItemDisplay extends React.Component {
       </div>
     )
   }
-
 }
 export default ItemDisplay;
