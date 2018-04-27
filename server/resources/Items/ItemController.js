@@ -21,8 +21,6 @@ exports.createItem = function (req, res) {
 };
 
 exports.updateItem = function (req, res) {
-// Items.find({_id:req.body._id})
-console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaareq.body',req.body)
 var updateitem={
 		name: req.body.name,
 		image: req.body.image,
@@ -31,8 +29,6 @@ var updateitem={
 		location: req.body.location,
 		dateOfCreation: Date.now()
 	}
-	// console.log(updateitem)
-	console.log(req.body)
 Items.findOneAndUpdate({name:req.body.name},updateitem,function(err,data){
 		if(err){
 			res.json('err');
@@ -46,10 +42,8 @@ Items.findOneAndUpdate({name:req.body.name},updateitem,function(err,data){
 			 	res.json(data);
 			 }
 	      })
-			// res.json(data);
 
 		}
-	      // res.json(data);
 	      
 	})
 };

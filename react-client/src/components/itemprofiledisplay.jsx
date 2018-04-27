@@ -52,7 +52,6 @@ class ItemProfileDisplay extends React.Component {
 
 
   lend(){
-    console.log(this.state.item)
       var obj={
     name: this.state.item.name,
     image: this.state.item.image,
@@ -96,8 +95,6 @@ class ItemProfileDisplay extends React.Component {
   }
 
   render(){
-   // if(this.props.username===)
- console.log('session',this.browserHistory)
     return(
       <div style={{"marginTop": "25px"}}>
         <Panel bsStyle= {this.changeColor()} eventKey={this.props.eveKey}>
