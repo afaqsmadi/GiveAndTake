@@ -22,28 +22,40 @@ exports.createItem = function (req, res) {
 
 exports.updateItem = function (req, res) {
 // Items.find({_id:req.body._id})
-// console.log(req.body)
+console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaareq.body',req.body)
 var updateitem={
 		name: req.body.name,
 		image: req.body.image,
 		description: req.body.description,
-		available: req.body.available,
+		available: !req.body.available,
 		location: req.body.location,
 		dateOfCreation: Date.now()
 	}
 	// console.log(updateitem)
 	console.log(req.body)
-Items.update({_id:req.body._id},updateitem,function(err,data){
-if(err){
-	res.send(err)
-}
-res.send(data);
-});
+Items.findOneAndUpdate({name:req.body.name},updateitem,function(err,data){
+		if(err){
+			res.json('err');
+		}
+		else{
+			 data.save(function(err,data){
+			 	if(err){
+					return handleError(err)
+			 	}
+			 	else{
+			 	res.json(data);
+			 }
+	      })
+			// res.json(data);
 
+		}
+	      // res.json(data);
+	      
+	})
 };
 
 exports.deleteItem = function (req, res) {
-	Items.findOne({_id:req.body._id},function(err,data){
+	Items.findOne({_id:req.body.id},function(err,data){
 		if(err){
 			res.send(err)
 		}
