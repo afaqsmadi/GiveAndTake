@@ -35,9 +35,9 @@ userRouter.route('/addItem')
 		userController.addItem(req, res);
 	})
 
-userRouter.route('/test2')
-	.get(function (req, res) {
-		userController.test(req, res);
+userRouter.route('/sendMessage')
+	.post(function (req, res) {
+		userController.sendMessage(req, res);
 	})
 
 module.exports = userRouter;

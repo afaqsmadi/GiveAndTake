@@ -74,7 +74,7 @@ class ShowItem extends React.Component {
       <Button  onClick={this.getItem} bsStyle='primary'>SEARCH</Button>
       <div>
        <PanelGroup activeKey={this.state.activeKey}
-        onSelect={this.handleSelect}>
+        onSelect={this.handleSelect} id="panelForItems">
       {this.state.sItem.map(function(y){
         return(
           <div>
