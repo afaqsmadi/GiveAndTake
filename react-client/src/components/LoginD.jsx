@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router-dom'
 
 class LoginD extends React.Component {
   constructor(props, context) {
@@ -42,13 +42,13 @@ class LoginD extends React.Component {
     }
     this.props.loginAuthen(obj);
     this.handleClose();
-    return <Redirect to='/profile'/>;
+    return <Redirect to="/profile" />;
   }
 
   render() {
     return (
       <div>
-        <h2> Welcome </h2>
+        <h2> Welcome Back</h2>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Login</Modal.Title>

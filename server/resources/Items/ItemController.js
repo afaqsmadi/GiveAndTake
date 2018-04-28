@@ -1,4 +1,5 @@
 var Items = require('./Items');
+var Users = require('../User/Users');
 
 exports.createItem = function (req, res) {
 	console.log("req,body",req.body);
@@ -54,9 +55,18 @@ exports.deleteItem = function (req, res) {
 			res.send(err)
 		}
 		data.remove();
-		res.send("deleted")
-
 	})
+	Users.findOne({username : req.session.username}).exec(function (err, user) {
+		for (var i = 0 ; i < user.items.length ; i++) {
+			if (req.body.id == user.items[i]) {
+				user.items.splice(i,1)	
+			}
+		}
+		user.save(function (err, updatedUser) {
+		    if (err) return console.log(err);
+		    res.json(updatedUser);
+		});
+	});
 };
 
 exports.searchItem = function (req,res){
