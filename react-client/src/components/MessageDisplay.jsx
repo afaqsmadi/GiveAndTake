@@ -36,7 +36,6 @@ class MessageDisplay extends React.Component {
   }
 
   render(){
-    console.log(this.props.username)
     return(
       <div>
         <Panel bsStyle={this.changeColor()}>
