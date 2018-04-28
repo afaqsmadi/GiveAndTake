@@ -1,5 +1,6 @@
 var Users = require('./Users');
 var Items = require('../Items/Items');
+var Messages = require('../Messages/Messages');
 
 exports.create = function (req, res) {
 	var user = new Users(req.body);
@@ -60,12 +61,12 @@ exports.addItem = function (req, res) {
 			description: req.body.description,
 			available: true,
 			location: req.body.location
-		})	
+		});	
 		item.save(function(err){
 			if(err){
 				return handleError(err)
 			}
-		})
+		});
 		user.items.push(item._id);
 		user.save(function (err, updatedUser) {
 		    if (err) return console.log(err);
@@ -74,17 +75,30 @@ exports.addItem = function (req, res) {
 	});
 }
 
-exports.test = function (req, res) {
-	Users.findOne({username : req.session.username}).exec(function (err, user) {
-		var id = user.items
-		arr = [];
-		for (var i = 0 ; i < id.length ; i++) {
-			Items.findById(id[i]).exec(function (err, item) {
-				console.log(item)
-				arr.push(item)
-			})
+exports.sendMessage = function (req, res) {
+	var message = new Messages({
+		sendUsername: req.session.username,
+		recivedUsername: req.body.recivedUsername,
+		text: req.body.text
+	});
+	message.save(function (err) {
+		if (err) {
+			console.log(err);
 		}
-		console.log(arr)
-		res.json(arr)
+	});
+	console.log(req.body);
+	console.log(message);
+	Users.findOne({username : req.session.username}).exec(function (err, user) {	
+		user.messages.push(message._id)
+		user.save(function (err, updatedUser) {
+		    if (err) return console.log(err);
+		});
+	});
+	Users.findOne({username : req.body.recivedUsername}).exec(function (err, user) {	
+		user.messages.push(message._id)
+		user.save(function (err, updatedUser) {
+		    if (err) return console.log(err);
+		    res.json(updatedUser);
+		});
 	});
 }

@@ -11,7 +11,8 @@ var UsersSchema = mongoose.Schema({
 	about: {type: String },
 	email : {type: String, index: {unique: true} , required : true},
 	imgUrl : {type: String },
-	items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Items'}]
+	items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Items'}],
+	messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Messages'}]
 },
 {  usePushEach: true});
 
