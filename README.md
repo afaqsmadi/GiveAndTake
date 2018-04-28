@@ -1,4 +1,4 @@
-#Welcome to Take&Give for(social service)#
+#Welcome to Give & Take for(social service)#
 
 Take&Give helps people from the same district,it saves money and space.
 

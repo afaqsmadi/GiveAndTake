@@ -27,8 +27,7 @@ var updateitem={
 		image: req.body.image,
 		description: req.body.description,
 		available: !req.body.available,
-		location: req.body.location,
-		dateOfCreation: Date.now()
+		location: req.body.location
 	}
 Items.findOneAndUpdate({name:req.body.name},updateitem,function(err,data){
 		if(err){

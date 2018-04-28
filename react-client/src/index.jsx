@@ -66,7 +66,7 @@ class App extends React.Component {
         <Navbar bsStyle='inverse' collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              Take & Give
+              Give & Take
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

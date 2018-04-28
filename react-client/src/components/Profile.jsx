@@ -13,13 +13,14 @@ class Profile extends React.Component {
       editing:false
 
     }
-    this.renderStart=this.renderStart.bind(this)
-     this.renderedit=this.renderedit.bind(this)
-     this.edit=this.edit.bind(this)
-     this.save=this.save.bind(this)
-     this.handelChange=this.handelChange.bind(this)
-     this.handelChange2=this.handelChange2.bind(this)
-     this.handelChange3=this.handelChange3.bind(this)
+    this.renderStart=this.renderStart.bind(this);
+     this.renderedit=this.renderedit.bind(this);
+     this.edit=this.edit.bind(this);
+     this.save=this.save.bind(this);
+     this.handelChange=this.handelChange.bind(this);
+     this.handelChange2=this.handelChange2.bind(this);
+     this.handelChange3=this.handelChange3.bind(this);
+     this.getUser=this.getUser.bind(this);
   }
   edit(){
     this.setState({
@@ -61,6 +62,11 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
+    this.getUser();
+  }
+
+  getUser() {
+    console.log("hi")
     var that = this;
     var user = this.props.username
     $.ajax({
@@ -88,10 +94,11 @@ class Profile extends React.Component {
     if (user.length === 0) {
       return (
         <div>
-          <h1> Downloading data </h1>
+          <h1> Please Login </h1>
         </div>
       )
     }
+    var that = this;
     items.forEach(function (item, index) {
       arr.push(<ItemProfileDisplay id={item} eveKey={index} key={index} />)
     })

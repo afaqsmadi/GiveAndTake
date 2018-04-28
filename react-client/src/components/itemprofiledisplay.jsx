@@ -12,10 +12,15 @@ class ItemProfileDisplay extends React.Component {
     this.availability = this.availability.bind(this);
     this.lend = this.lend.bind(this);
     this.deleteItem=this.deleteItem.bind(this);
+    this.getItem=this.getItem.bind(this);
   }
 
   componentDidMount() {
-    var that = this;
+    this.getItem();
+  }
+
+  getItem() {
+        var that = this;
     var id = this.props.id
     $.ajax({
       url: `/item/${id}`,
@@ -48,21 +53,21 @@ class ItemProfileDisplay extends React.Component {
   }
 
   lend(){
-      var obj={
-    name: this.state.item.name,
-    image: this.state.item.image,
-    description: this.state.item.description,
-    available: this.state.item.available,
-    location: this.state.item.location,
-    dateOfCreation: Date.now()
-  }
+    var that = this;
+    var obj={
+      name: this.state.item.name,
+      image: this.state.item.image,
+      description: this.state.item.description,
+      available: this.state.item.available,
+      location: this.state.item.location
+    }
      $.ajax({
       url: '/item' ,
       type: 'PUT',    
       data: JSON.stringify(obj),
       contentType: 'application/json',
       success: function(result) {
-          alert("Successful updated");
+        that.getItem();
       }
     })
 
@@ -70,24 +75,17 @@ class ItemProfileDisplay extends React.Component {
 
   deleteItem(){
     var obj={
-    id:this.state.item._id,    
-    name: this.state.item.name,
-    image: this.state.item.image,
-    description: this.state.item.description,
-    available: this.state.item.available,
-    location: this.state.item.location,
-    dateOfCreation: Date.now()
-  }
-      $.ajax({
+      id:this.state.item._id,    
+    }
+    $.ajax({
       url: '/item' ,
       type: 'DELETE',    
       data: JSON.stringify(obj),
       contentType: 'application/json',
       success: function(result) {
-          alert("Successful deleted");
+        alert('item will be deleted soon, thanks for waiting')
       }
     })
-
   }
 
   render(){
