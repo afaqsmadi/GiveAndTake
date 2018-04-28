@@ -17,22 +17,27 @@ exports.login = function (req, res) {
 		if (err) {
 			return console.error(err);
 		}
-		user.validatePassword(req.body.password, function(err, isMatch) {
-        	if (err) { 
-        		return res.json(err); 
-        	}
-        	if (!isMatch) {
-        		res.json('Password not Match')
-        	}
-        	return req.session.regenerate(function(err) {
-        		if (err) {
-        			return console.error(err);
-        		}
-        		req.session.username = user.username;
-        		res.json(user);
-			})
-			res.json(user)
-	    });
+		else if (!user) {
+			console.error("user not found")
+		} else {
+			user.validatePassword(req.body.password, function(err, isMatch) {
+	        	if (err) { 
+	        		return res.json(err); 
+	        	}
+	        	else if (!isMatch) {
+	        		res.json('Password not Match')
+	        	}
+	        	else {
+		        	return req.session.regenerate(function(err) {
+		        		if (err) {
+		        			return console.error(err);
+		        		}
+		        		req.session.username = user.username;
+		        		res.json(user);
+					});
+	        	}
+		    });
+		}
 	});
 };
 
