@@ -62,8 +62,8 @@ class ItemDisplay extends React.Component {
                 <ListGroup>
                   <ListGroupItem>Item Description: {this.state.item.description}</ListGroupItem>
                   <ListGroupItem>Item location: {this.state.item.location}</ListGroupItem>
-                  <ListGroupItem>Item available: {this.availability()}  
-                  </ListGroupItem>
+                  <ListGroupItem>Item available: {this.availability()}</ListGroupItem>
+                  <ListGroupItem>Contact number: {this.state.item.phone}</ListGroupItem>
                   <ListGroupItem>Item added at: {this.state.item.dateOfCreation}</ListGroupItem>
                 </ListGroup>              
               </div>

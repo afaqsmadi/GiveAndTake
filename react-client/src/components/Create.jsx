@@ -38,6 +38,10 @@ class Create extends React.Component {
                   <input size="60" className="form-control" placeholder="Email" name="email" id="UserRegistration_address" type="text"/>                                    
               </div>
               <div className="input-group margin-bottom-20">
+                  <span className="input-group-addon"><i className="glyphicon glyphicon-phone mycolor"></i></span>
+                  <input size="60" className="form-control" placeholder="Phone Number" name="phone" id="UserRegistration_phone" type="text"/>                                    
+              </div>
+              <div className="input-group margin-bottom-20">
                   <span className="input-group-addon"><i className="glyphicon glyphicon-picture mycolor"></i></span>
                   <input className="form-control" placeholder="image" name="imgUrl" id="UserRegistration_Image" type="text"/>                                    
               </div>

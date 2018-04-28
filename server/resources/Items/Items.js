@@ -8,6 +8,7 @@ var ItemsSchema = mongoose.Schema({
 	description: String,
 	available: Boolean, 
 	location: String,
+	phone:Number,
 	dateOfCreation: { type: Date, default: Date.now }
 },{  usePushEach: true});
 
