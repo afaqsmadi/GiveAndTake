@@ -7,6 +7,7 @@ var UsersSchema = mongoose.Schema({
 	password: {type: String , required : true},
 	firstName : {type: String , required : true},
 	lastName : {type: String , required : true},
+	phone: {type:Number},
 	about: {type: String },
 	email : {type: String, index: {unique: true} , required : true},
 	imgUrl : {type: String },
