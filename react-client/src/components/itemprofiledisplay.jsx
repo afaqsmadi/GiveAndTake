@@ -1,8 +1,7 @@
 import React from 'react';
 import Comments from './comments.jsx';
-import UpdateItem from './updateitem.jsx';
-import { browserHistory } from 'react-router';
 import {PanelGroup, Panel, ListGroup, ListGroupItem ,Button} from 'react-bootstrap';
+
 class ItemProfileDisplay extends React.Component {
   constructor(props) {
     super(props);
@@ -14,8 +13,6 @@ class ItemProfileDisplay extends React.Component {
     this.lend = this.lend.bind(this);
     this.deleteItem=this.deleteItem.bind(this);
   }
-
-  
 
   componentDidMount() {
     var that = this;
@@ -49,7 +46,6 @@ class ItemProfileDisplay extends React.Component {
       return "No"
     }
   }
-
 
   lend(){
       var obj={

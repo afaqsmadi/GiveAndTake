@@ -46,13 +46,7 @@ class ItemDisplay extends React.Component {
     }
   }
 
- 
-
-
-
   render(){
-   // if(this.props.username===)
- console.log('session',this.browserHistory)
     return(
       <div style={{"marginTop": "25px"}}>
         <Panel bsStyle= {this.changeColor()} eventKey={this.props.eveKey}>
