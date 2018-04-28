@@ -9,10 +9,12 @@ class Messages extends React.Component{
 		this.state={
 			user:[],
 			message:'',
-			recivedUsername:''
+			recivedUsername:'',
+			refresh:true
 		}
 		this.handleChange=this.handleChange.bind(this);
 		this.addMessages=this.addMessages.bind(this);
+		this.getUserData=this.getUserData.bind(this);
 	}
 
 	handleChange(e){
@@ -31,18 +33,18 @@ class Messages extends React.Component{
 	      data:obj
 	    })
 	    .done (function (data) {
-	    	alert('message sent');
 	    	that.setState({
 				message:'',
 				recivedUsername:''	     	
 	    	})
+	    	that.getUserData();
 	    })
 	    .fail(function( jqXHR, textStatus ) {
-	    	alert("comment does not go will");
+	    	alert("Error");
 	    });
 	}
 
-	componentDidMount() {
+	getUserData() {
 	    var that = this;
 	    var user = this.props.username
 	    $.ajax({
@@ -57,6 +59,10 @@ class Messages extends React.Component{
 	    .fail(function( jqXHR, textStatus ) {
 	      alert( "No user Found");
 	    });
+	}
+
+	componentDidMount() {
+		this.getUserData();
 	}
 
 	render(){

@@ -60356,10 +60356,12 @@
 			_this.state = {
 				user: [],
 				message: '',
-				recivedUsername: ''
+				recivedUsername: '',
+				refresh: true
 			};
 			_this.handleChange = _this.handleChange.bind(_this);
 			_this.addMessages = _this.addMessages.bind(_this);
+			_this.getUserData = _this.getUserData.bind(_this);
 			return _this;
 		}
 	
@@ -60381,18 +60383,18 @@
 					method: 'POST',
 					data: obj
 				}).done(function (data) {
-					alert('message sent');
 					that.setState({
 						message: '',
 						recivedUsername: ''
 					});
+					that.getUserData();
 				}).fail(function (jqXHR, textStatus) {
-					alert("comment does not go will");
+					alert("Error");
 				});
 			}
 		}, {
-			key: 'componentDidMount',
-			value: function componentDidMount() {
+			key: 'getUserData',
+			value: function getUserData() {
 				var that = this;
 				var user = this.props.username;
 				$.ajax({
@@ -60405,6 +60407,11 @@
 				}).fail(function (jqXHR, textStatus) {
 					alert("No user Found");
 				});
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.getUserData();
 			}
 		}, {
 			key: 'render',
@@ -60550,7 +60557,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props.username);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
