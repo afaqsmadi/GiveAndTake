@@ -171,7 +171,7 @@
 	              _react2.default.createElement(
 	                _reactBootstrap.Navbar.Brand,
 	                null,
-	                'Take & Give'
+	                'Give & Take'
 	              ),
 	              _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
 	            ),
@@ -59723,6 +59723,7 @@
 	    _this.handelChange = _this.handelChange.bind(_this);
 	    _this.handelChange2 = _this.handelChange2.bind(_this);
 	    _this.handelChange3 = _this.handelChange3.bind(_this);
+	    _this.getUser = _this.getUser.bind(_this);
 	    return _this;
 	  }
 	
@@ -59775,6 +59776,12 @@
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      this.getUser();
+	    }
+	  }, {
+	    key: 'getUser',
+	    value: function getUser() {
+	      console.log("hi");
 	      var that = this;
 	      var user = this.props.username;
 	      $.ajax({
@@ -59805,10 +59812,11 @@
 	          _react2.default.createElement(
 	            'h1',
 	            null,
-	            ' Downloading data '
+	            ' Please Login '
 	          )
 	        );
 	      }
+	      var that = this;
 	      items.forEach(function (item, index) {
 	        arr.push(_react2.default.createElement(_itemprofiledisplay2.default, { id: item, eveKey: index, key: index }));
 	      });
@@ -59971,12 +59979,18 @@
 	    _this.availability = _this.availability.bind(_this);
 	    _this.lend = _this.lend.bind(_this);
 	    _this.deleteItem = _this.deleteItem.bind(_this);
+	    _this.getItem = _this.getItem.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(ItemProfileDisplay, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      this.getItem();
+	    }
+	  }, {
+	    key: 'getItem',
+	    value: function getItem() {
 	      var that = this;
 	      var id = this.props.id;
 	      $.ajax({
@@ -60011,13 +60025,13 @@
 	  }, {
 	    key: 'lend',
 	    value: function lend() {
+	      var that = this;
 	      var obj = {
 	        name: this.state.item.name,
 	        image: this.state.item.image,
 	        description: this.state.item.description,
 	        available: this.state.item.available,
-	        location: this.state.item.location,
-	        dateOfCreation: Date.now()
+	        location: this.state.item.location
 	      };
 	      $.ajax({
 	        url: '/item',
@@ -60025,7 +60039,7 @@
 	        data: JSON.stringify(obj),
 	        contentType: 'application/json',
 	        success: function success(result) {
-	          alert("Successful updated");
+	          that.getItem();
 	        }
 	      });
 	    }
@@ -60033,13 +60047,7 @@
 	    key: 'deleteItem',
 	    value: function deleteItem() {
 	      var obj = {
-	        id: this.state.item._id,
-	        name: this.state.item.name,
-	        image: this.state.item.image,
-	        description: this.state.item.description,
-	        available: this.state.item.available,
-	        location: this.state.item.location,
-	        dateOfCreation: Date.now()
+	        id: this.state.item._id
 	      };
 	      $.ajax({
 	        url: '/item',
@@ -60047,7 +60055,7 @@
 	        data: JSON.stringify(obj),
 	        contentType: 'application/json',
 	        success: function success(result) {
-	          alert("Successful deleted");
+	          alert('item will be deleted soon, thanks for waiting');
 	        }
 	      });
 	    }
