@@ -1,8 +1,9 @@
 import React from 'react';
 import Comments from './comments.jsx';
+import UpdateItem from './updateitem.jsx';
 import { browserHistory } from 'react-router';
 import {PanelGroup, Panel, ListGroup, ListGroupItem ,Button} from 'react-bootstrap';
-class ItemDisplay extends React.Component {
+class ItemProfileDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,8 +11,11 @@ class ItemDisplay extends React.Component {
     }   
     this.changeColor = this.changeColor.bind(this);
     this.availability = this.availability.bind(this);
-    
+    this.lend = this.lend.bind(this);
+    this.deleteItem=this.deleteItem.bind(this);
   }
+
+  
 
   componentDidMount() {
     var that = this;
@@ -46,13 +50,51 @@ class ItemDisplay extends React.Component {
     }
   }
 
- 
 
+  lend(){
+      var obj={
+    name: this.state.item.name,
+    image: this.state.item.image,
+    description: this.state.item.description,
+    available: this.state.item.available,
+    location: this.state.item.location,
+    dateOfCreation: Date.now()
+  }
+     $.ajax({
+      url: '/item' ,
+      type: 'PUT',    
+      data: JSON.stringify(obj),
+      contentType: 'application/json',
+      success: function(result) {
+          alert("Successful updated");
+      }
+    })
 
+  }
+
+  deleteItem(){
+    var obj={
+    id:this.state.item._id,    
+    name: this.state.item.name,
+    image: this.state.item.image,
+    description: this.state.item.description,
+    available: this.state.item.available,
+    location: this.state.item.location,
+    dateOfCreation: Date.now()
+  }
+      $.ajax({
+      url: '/item' ,
+      type: 'DELETE',    
+      data: JSON.stringify(obj),
+      contentType: 'application/json',
+      success: function(result) {
+          alert("Successful deleted");
+      }
+    })
+
+  }
 
   render(){
-   // if(this.props.username===)
- console.log('session',this.browserHistory)
     return(
       <div style={{"marginTop": "25px"}}>
         <Panel bsStyle= {this.changeColor()} eventKey={this.props.eveKey}>
@@ -71,6 +113,9 @@ class ItemDisplay extends React.Component {
                   <ListGroupItem>Item available: {this.availability()}  
                   </ListGroupItem>
                   <ListGroupItem>Item added at: {this.state.item.dateOfCreation}</ListGroupItem>
+                  <ListGroupItem> <Button onClick={this.lend}>LEND</Button> <Button onClick={this.deleteItem}>Delete</Button> 
+                   </ListGroupItem>
+                  
                 </ListGroup>              
               </div>
             </div>
@@ -84,4 +129,4 @@ class ItemDisplay extends React.Component {
     )
   }
 }
-export default ItemDisplay;
+export default ItemProfileDisplay;

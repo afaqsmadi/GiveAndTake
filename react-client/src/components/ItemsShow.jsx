@@ -78,7 +78,8 @@ class ShowItem extends React.Component {
       {this.state.sItem.map(function(y){
         return(
           <div>
-            <ItemDisplay id={y._id}/>
+            <ItemDisplay id={y._id} username={y.username} />
+            {console.log('y= ',y)}
           </div>  
         )
       }

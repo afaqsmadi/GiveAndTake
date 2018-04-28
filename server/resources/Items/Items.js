@@ -6,7 +6,7 @@ var ItemsSchema = mongoose.Schema({
 	name: String,
 	image: String,
 	description: String,
-	available: Boolean, // represent the number of days.
+	available: Boolean, 
 	location: String,
 	dateOfCreation: { type: Date, default: Date.now }
 },{  usePushEach: true});

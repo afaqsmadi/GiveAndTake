@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemDisplay from './ItemDisplay.jsx';
+import ItemProfileDisplay from './itemprofiledisplay.jsx';
 import { PanelGroup, Panel, Button, Well, FormControl } from 'react-bootstrap';
 
 class Profile extends React.Component {
@@ -93,7 +93,7 @@ class Profile extends React.Component {
       )
     }
     items.forEach(function (item, index) {
-      arr.push(<ItemDisplay id={item} eveKey={index} key={index} />)
+      arr.push(<ItemProfileDisplay id={item} eveKey={index} key={index} />)
     })
     return(
       <div>
