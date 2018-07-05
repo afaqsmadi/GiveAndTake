@@ -12,24 +12,24 @@ Give&Take makes communication between the owner of the item and the one who need
 first, the owner can add all the stuffs that he/she wants to share and clients of the website can see the stuffs and if the stuff is available and communicate with the owner using comments on the stuff's page.
 
 # Features:
-1-login /authintication 
-2-search for item's.
-3-Edit your profile information 
+- login /authintication 
+- search for item's.
+- Edit your profile information 
 
 # Tools and Technologies we used:
-1-Front-End MVC:React
-2-CSS Framework: Bootstrap
-3-Server: Express/Node.js
-4-Database: MongoDB
-5-Deployment: Heroku
+- Front-End MVC:React
+- CSS Framework: Bootstrap
+- Server: Express/Node.js
+- Database: MongoDB
+- Deployment: Heroku
 
 ##  Installing Dependencies:
--npm install
+- npm install
 
 # Team (Medusa):
 - Product Owner:@ Monther Amer
--Scrum Master: @ Ahmad.yaaqba
--Development Team Members: @ Afaq smadi  ,@ Abdallah 
+- Scrum Master: @ Ahmad.yaaqba
+- Development Team Members: @ Afaq smadi  ,@ Abdallah 
 
 # GitHub Link:
 https://github.com/Greenfield-project-Medusa/GiveAndTake
