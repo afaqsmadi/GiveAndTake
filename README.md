@@ -4,7 +4,7 @@
 
 If you need an stuff that you don't have and you will not use. Instead of buying it, you can borrow it from someone else lives near you by using Give&Take .
 you can borrow it for a limited time and then bring it back.
-Everyone support each other and Take&Give is the communication tool for this service. 
+Everyone support each other and Give&Take is the communication tool for this service. 
 
 Give&Take makes communication between the owner of the item and the one who needs it easier. So, it saves money and time.
 
