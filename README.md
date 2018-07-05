@@ -1,6 +1,6 @@
-# Welcome to Give & Take for(social service)
+# Welcome to <span style="color:red"> Give&Take </span> for(social service)
 
- Take&Give helps people from the same district,it saves money and space.
+ Give&Take helps people from the same district,it saves money and space.
 
 If you need an stuff that you don't have and you will not use. Instead of buying it, you can borrow it from someone else lives near you by using Give&Take .
 you can borrow it for a limited time and then bring it back.
